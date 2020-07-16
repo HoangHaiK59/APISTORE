@@ -37,9 +37,10 @@ namespace Store.Controllers
         }
 
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] UserLogin userLogin)
+        public async Task<Response> Login([FromBody] UserLogin userLogin)
         {
-            return _storeRepository.Login(userLogin);
+            var result = await _storeRepository.Login(userLogin);
+            return result;
         }
     }
 }

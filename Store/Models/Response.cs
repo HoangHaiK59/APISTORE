@@ -8,6 +8,6 @@ namespace Store.Models
     public class Response
     {
         public string message;
-        public int status;
+        public bool valid;
     }
 }
