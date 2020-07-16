@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -19,9 +20,14 @@ namespace Store
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment environment)
         {
-            Configuration = configuration;
+            //Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(environment.ContentRootPath)
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -49,6 +55,8 @@ namespace Store
                 errorNumbersToAdd: null);
                 });
             });
+ 
+            services.Configure<GetConfiguration>(con => Configuration.GetSection("ConnectionStrings").Bind(con));
             services.AddScoped<StoreRepository>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

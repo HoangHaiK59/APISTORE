@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Store.Repository;
 using Store.Models;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace Store.Controllers
 {
@@ -13,6 +17,7 @@ namespace Store.Controllers
     public class StoreController : ControllerBase
     {
         private IStoreRepository _storeRepository;
+
         //public IActionResult Index()
         //{
         //    return View();
@@ -29,6 +34,12 @@ namespace Store.Controllers
             var model = _storeRepository.GetAll();
             //return View(model);
             return model;
+        }
+
+        [HttpPost("Login")]
+        public IActionResult Login([FromBody] UserLogin userLogin)
+        {
+            return _storeRepository.Login(userLogin);
         }
     }
 }
