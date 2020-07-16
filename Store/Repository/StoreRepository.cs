@@ -48,7 +48,7 @@ namespace Store.Repository
                 var result = conn.Query(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
                 if(result.Count > 0)
                 {
-                    return new ObjectResult(new Response { status = 200, message = "success" }) { StatusCode = 200, Value };
+                    return new ObjectResult(new Response { status = 200, message = "success" }) { StatusCode = 200 };
                 } else
                 {
                     return new ObjectResult(new Response { status = 400, message = "error" }) { StatusCode = 400 };
