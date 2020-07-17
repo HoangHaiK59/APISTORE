@@ -67,9 +67,6 @@ E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Dapper.dll
-E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.csproj.CoreCompileInputs.cache
-E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.cs
-E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.cache
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\appsettings.Development.json
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\appsettings.json
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -146,3 +143,13 @@ E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.csproj.CoreCompileInputs.cache
+E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.cs
+E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.cache

@@ -28,7 +28,7 @@ namespace Store.Controllers
             _storeRepository = storeRepository;
         }
 
-        [HttpGet("User")]
+        [HttpGet("user")]
         public List<User> Index()
         {
             var model = _storeRepository.GetAll();
@@ -36,10 +36,10 @@ namespace Store.Controllers
             return model;
         }
 
-        [HttpPost("Login")]
-        public BaseResponseWithToken Login([FromBody] UserLogin userLogin)
+        [HttpPost("token")]
+        public BaseResponseWithToken Token([FromBody] UserLogin userLogin)
         {
-            var result = _storeRepository.Login(userLogin);
+            var result = _storeRepository.Token(userLogin);
             return result;
         }
     }

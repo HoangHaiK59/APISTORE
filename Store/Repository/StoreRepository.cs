@@ -38,7 +38,7 @@ namespace Store.Repository
         {
             return _context.User.ToList();
         }
-        public BaseResponseWithToken Login([FromBody] UserLogin userLogin)
+        public BaseResponseWithToken Token([FromBody] UserLogin userLogin)
         {
             var storeProduced = "sp_User";
 
@@ -67,20 +67,15 @@ namespace Store.Repository
 
         public string generateJwtToken(UserLogin user)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var test = _configuration.GetSection("AppSettings:Secret").Value;
-            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("AppSettings:Secret").Value);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.Username)
-                }),
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Secret").Value));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                          null,
+                          expires: DateTime.Now.AddDays(1),
+                          signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
