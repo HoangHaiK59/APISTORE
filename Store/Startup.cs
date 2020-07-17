@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using Store.Models;
 using Store.Repository;
@@ -20,6 +21,7 @@ namespace Store
 {
     public class Startup
     {
+        readonly string Origins = "*";
         public Startup(IWebHostEnvironment environment)
         {
             //Configuration = configuration;
@@ -36,6 +38,14 @@ namespace Store
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "mypolicy", builder =>
+                {
+                    builder.WithOrigins(Origins).SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .WithHeaders(HeaderNames.CacheControl, HeaderNames.Origin, HeaderNames.ContentType);
+                });
+            });
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
@@ -77,6 +87,8 @@ namespace Store
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 c.RoutePrefix = string.Empty;
             });
+
+            app.UseCors("mypolicy");
 
             app.UseHttpsRedirection();
 

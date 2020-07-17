@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\NETCORE\\Store\\Store.csproj": {}
+    "E:\\ASP\\STORE\\Store\\Store.csproj": {}
   },
   "projects": {
-    "E:\\NETCORE\\Store\\Store.csproj": {
+    "E:\\ASP\\STORE\\Store\\Store.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\NETCORE\\Store\\Store.csproj",
+        "projectUniqueName": "E:\\ASP\\STORE\\Store\\Store.csproj",
         "projectName": "Store",
-        "projectPath": "E:\\NETCORE\\Store\\Store.csproj",
-        "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
-        "outputPath": "E:\\NETCORE\\Store\\obj\\",
+        "projectPath": "E:\\ASP\\STORE\\Store\\Store.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "E:\\ASP\\STORE\\Store\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -91,6 +91,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.7.1, )"
             }
           },
           "imports": [

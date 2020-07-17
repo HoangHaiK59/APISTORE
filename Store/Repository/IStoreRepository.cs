@@ -10,6 +10,6 @@ namespace Store.Repository
     interface IStoreRepository
     {
         List<User> GetAll();
-        Task<Response> Login([FromBody] UserLogin userLogin);
+        BaseResponseWithToken Login([FromBody] UserLogin userLogin);
     }
 }

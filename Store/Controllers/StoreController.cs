@@ -12,7 +12,7 @@ using Dapper;
 
 namespace Store.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1")]
     [ApiController]
     public class StoreController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace Store.Controllers
             _storeRepository = storeRepository;
         }
 
-        [HttpGet]
+        [HttpGet("User")]
         public List<User> Index()
         {
             var model = _storeRepository.GetAll();
@@ -37,9 +37,9 @@ namespace Store.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<Response> Login([FromBody] UserLogin userLogin)
+        public BaseResponseWithToken Login([FromBody] UserLogin userLogin)
         {
-            var result = await _storeRepository.Login(userLogin);
+            var result = _storeRepository.Login(userLogin);
             return result;
         }
     }

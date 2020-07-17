@@ -230,9 +230,9 @@ namespace Store.Models
 
                 entity.Property(e => e.Created).HasColumnName("created");
 
-                entity.Property(e => e.CustId)
+                entity.Property(e => e.UserId)
                     .IsRequired()
-                    .HasColumnName("custId")
+                    .HasColumnName("userId")
                     .HasMaxLength(50)
                     .HasDefaultValueSql("('')");
 

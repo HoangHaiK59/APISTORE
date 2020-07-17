@@ -142,3 +142,7 @@ E:\ASP\STORE\Store\obj\Debug\netcoreapp3.1\Store.genruntimeconfig.cache
 E:\ASP\STORE\Store\obj\Debug\netcoreapp3.1\Store.csproj.CoreCompileInputs.cache
 E:\ASP\STORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.cs
 E:\ASP\STORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.cache
+E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
