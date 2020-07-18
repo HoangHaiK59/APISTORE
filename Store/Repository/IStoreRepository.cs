@@ -9,7 +9,7 @@ namespace Store.Repository
 {
     interface IStoreRepository
     {
-        List<User> GetAll();
+        Response<UserInfo> GetUserInfo(string username);
         BaseResponseWithToken Token([FromBody] UserLogin userLogin);
     }
 }

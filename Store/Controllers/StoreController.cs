@@ -9,6 +9,8 @@ using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using Dapper;
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Store.Controllers
 {
@@ -29,11 +31,11 @@ namespace Store.Controllers
         }
 
         [HttpGet("user")]
-        public List<User> Index()
+        public IActionResult GetUserInfo(string username)
         {
-            var model = _storeRepository.GetAll();
-            //return View(model);
-            return model;
+            var response = Unauthorized();
+            var model = _storeRepository.GetUserInfo(username);
+            return Ok(model);
         }
 
         [HttpPost("token")]

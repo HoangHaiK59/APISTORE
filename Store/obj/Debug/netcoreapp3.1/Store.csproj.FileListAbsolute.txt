@@ -153,3 +153,6 @@ E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenI
 E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.csproj.CoreCompileInputs.cache
 E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.cs
 E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.cache
+E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

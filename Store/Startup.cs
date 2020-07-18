@@ -80,6 +80,8 @@ namespace Store
                             ValidateAudience = true,
                             ValidateLifetime = true,
                             ValidateIssuerSigningKey = true,
+                            RequireExpirationTime = true,
+                            RequireSignedTokens = true,
                             //ValidIssuer = Configuration["Jwt:Issuer"],
                             //ValidAudience = Configuration["Jwt:Issuer"],
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AppSettings:Secret"]))
@@ -108,6 +110,8 @@ namespace Store
             app.UseCors("mypolicy");
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
