@@ -22,7 +22,6 @@ namespace Store.Repository
         private readonly dbstoreContext _context;
         private IConfiguration _configuration;
         private string _connectionString;
-        private string _token;
         public StoreRepository()
         {
             _context = new dbstoreContext();
@@ -66,7 +65,7 @@ namespace Store.Repository
             }
         }
 
-        public BaseResponseWithToken Token([FromBody] UserLogin userLogin)
+        public BaseResponseWithToken Authorize(string token , [FromBody] UserLogin userLogin)
         {
             var storeProduced = "sp_User";
 
@@ -79,10 +78,9 @@ namespace Store.Repository
                     param.Add("@username", userLogin.Username);
                     param.Add("@password", userLogin.Password);
                     var result = conn.QueryFirst<BaseResponseWithToken>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
-                    _token = generateJwtToken(userLogin);
                     if(result.status)
                     {
-                        result.token = _token;
+                        result.token = token;
                     }
                     return result;
                 }
@@ -92,46 +90,26 @@ namespace Store.Repository
                 }
             }
         }
-
-        public string generateJwtToken(UserLogin user)
+        public BaseResponse Subscribe([FromBody] Subscribe subscribe)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Secret").Value));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            var storeProduced = "sp_Subscribe_Set";
 
-            var token = new JwtSecurityToken(
-                          null,
-                          expires: DateTime.Now.AddDays(1),
-                          signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@email", subscribe.email);
+                    var result = conn.QueryFirst<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
-        public static JwtSecurityToken ValidateToken(string token, IEnumerable<SecurityKey> signingKeys)
-        {
-            var validationParameters = new TokenValidationParameters
-            {
-                // We recommend 5 minutes or less:
-                ClockSkew = TimeSpan.FromMinutes(5),
-                // Specify the key used to sign the token:
-                IssuerSigningKeys = signingKeys,
-                RequireSignedTokens = true,
-                // Ensure the token hasn't expired:
-                RequireExpirationTime = true,
-                ValidateLifetime = true,
-            };
-            try
-            {
-                var claimsPrincipal = new JwtSecurityTokenHandler().ValidateToken(token, validationParameters, out var rawValidatedToken);
-                return (JwtSecurityToken)rawValidatedToken;
-            }
-            catch (SecurityTokenValidationException stve)
-            {
-                throw new Exception($"Token fail validation: {stve.Message}");
-            }
-            catch (ArgumentException argex)
-            {
-                throw new Exception($"Token was invalid: {argex.Message}");
-            }
-        }
     }
 }

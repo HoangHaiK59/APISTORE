@@ -10,6 +10,7 @@ namespace Store.Repository
     interface IStoreRepository
     {
         Response<UserInfo> GetUserInfo(string username);
-        BaseResponseWithToken Token([FromBody] UserLogin userLogin);
+        BaseResponseWithToken Authorize(string token , [FromBody] UserLogin userLogin);
+        BaseResponse Subscribe([FromBody] Subscribe subscribe);
     }
 }

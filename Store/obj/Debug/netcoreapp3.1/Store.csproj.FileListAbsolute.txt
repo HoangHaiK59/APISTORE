@@ -78,12 +78,6 @@ E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Store.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Store.pdb
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\AutoMapper.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Dapper.dll
-E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
-E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
-E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
-E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
-E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
-E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
@@ -105,7 +99,6 @@ E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
-E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll

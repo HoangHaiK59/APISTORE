@@ -46,7 +46,7 @@ namespace Store
                 options.AddPolicy(name: "mypolicy", builder =>
                 {
                     builder.WithOrigins(Origins).SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .WithHeaders(HeaderNames.CacheControl, HeaderNames.Origin, HeaderNames.ContentType);
+                    .WithHeaders(HeaderNames.CacheControl, HeaderNames.Origin, HeaderNames.ContentType, HeaderNames.Authorization);
                 });
             });
             services.AddSwaggerGen(c => {
@@ -76,8 +76,8 @@ namespace Store
                     {
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
-                            ValidateIssuer = true,
-                            ValidateAudience = true,
+                            ValidateIssuer = false,
+                            ValidateAudience = false,
                             ValidateLifetime = true,
                             ValidateIssuerSigningKey = true,
                             RequireExpirationTime = true,
