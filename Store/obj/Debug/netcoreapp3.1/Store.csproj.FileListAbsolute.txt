@@ -149,3 +149,5 @@ E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.MvcApplicationPartsAssemblyInfo.c
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Store.xml
+E:\ASP\STORE\Store\obj\Debug\netcoreapp3.1\Store.xml

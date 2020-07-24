@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Store</name>
+    </assembly>
+    <members>
+        <member name="M:Store.Controllers.StoreController.GetUserInfo(System.String)">
+            <summary>
+             Get User Info
+            </summary>
+            <param username="string"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.Authorize(Store.Models.UserLogin)">
+            <summary>
+             Authorize
+            </summary>
+            <param userLogin="UserLogin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.Subscribe(Store.Models.Subscribe)">
+            <summary>
+             Subscribe
+            </summary>
+            <param email="string"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetLandingPage(System.Int32)">
+            <summary>
+             Get Landing Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetHomePage">
+            <summary>
+             Get Home Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetJacketPage">
+            <summary>
+             Get Jacket Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetJeanPage">
+            <summary>
+             Get Jean Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetJumpSuitPage">
+            <summary>
+             Get JumpSuit Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetPrincessPage">
+            <summary>
+             Get Princess Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetShirtPage">
+            <summary>
+             Get Shirt Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetTShirtPage">
+            <summary>
+             Get TShirt Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetSkirtPage">
+            <summary>
+             Get Skirt Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetShortPage">
+            <summary>
+            Get Short Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetCategoryPage">
+            <summary>
+            Get Category Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetDetailProduct(System.Int32)">
+            <summary>
+             Get Detail Product
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetHotProduct">
+            <summary>
+             Get Hot Product
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

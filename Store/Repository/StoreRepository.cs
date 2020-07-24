@@ -111,5 +111,144 @@ namespace Store.Repository
             }
         }
 
+        public Response<Landing> GetLandingPage(int ordinal)
+        {
+            var storeProduced = "sp_Landing_Get";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<Landing>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@ordinal", ordinal);
+                    var data = conn.QueryFirst<Landing>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    if(data != null)
+                    {
+                        result.data = data;
+                        result.status = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public Response<Product> GetHomePage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+
+        public Response<Product> GetJacketPage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+        public Response<Product> GetShirtPage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+        public Response<Product> GetTShirtPage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+        public Response<Product> GetJeanPage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+        public Response<Product> GetJumpSuitPage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+        public Response<Product> GetShortPage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+        public Response<Product> GetPrincessPage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+        public Response<Product> GetSkirtPage()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+        public Response<List<Category>> GetCategoryPage() { 
+        
+
+            var storeProduced = "sp_Category";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<List<Category>>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    var data = conn.Query<Category>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    if (data != null)
+                    {
+                        result.data = data;
+                        result.status = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public Response<Product> GetDetailProduct(int productId)
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+
+        public async Task<BaseResponse> AddtoCheckout(Product product)
+        {
+            var storeProduced = "sp_Checkout_Set";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new BaseResponse();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@product", product);
+                    var data = await conn.QueryFirstAsync<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    if (data != null)
+                    {
+                        result.status = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public Response<Product> GetHotProduct()
+        {
+            var result = new Response<Product>();
+            return result;
+        }
+
     }
 }

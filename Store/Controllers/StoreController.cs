@@ -83,6 +83,201 @@ namespace Store.Controllers
             return BadRequest();
         }
 
+        /// <summary>
+        ///  Get Landing Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetLandingPage")]
+        public IActionResult GetLandingPage(int ordinal)
+        {
+            var result = _storeRepository.GetLandingPage(ordinal);
+            if(result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Home Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetHomePage")]
+        public IActionResult GetHomePage()
+        {
+            var result = _storeRepository.GetHomePage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Jacket Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetJacketPage")]
+        public IActionResult GetJacketPage()
+        {
+            var result = _storeRepository.GetJacketPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Jean Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetJeanPage")]
+        public IActionResult GetJeanPage()
+        {
+            var result = _storeRepository.GetJeanPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get JumpSuit Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetJumpSuitPage")]
+        public IActionResult GetJumpSuitPage()
+        {
+            var result = _storeRepository.GetJumpSuitPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Princess Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetPrincessPage")]
+        public IActionResult GetPrincessPage()
+        {
+            var result = _storeRepository.GetPrincessPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Shirt Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetShirtPage")]
+        public IActionResult GetShirtPage()
+        {
+            var result = _storeRepository.GetShirtPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get TShirt Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetTShirtPage")]
+        public IActionResult GetTShirtPage()
+        {
+            var result = _storeRepository.GetTShirtPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Skirt Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetSkirtPage")]
+        public IActionResult GetSkirtPage()
+        {
+            var result = _storeRepository.GetSkirtPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        /// Get Short Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetShortPage")]
+        public IActionResult GetShortPage()
+        {
+            var result = _storeRepository.GetShortPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        /// Get Category Page
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetCategoryPage")]
+        public IActionResult GetCategoryPage()
+        {
+            var result = _storeRepository.GetCategoryPage();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Detail Product
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetDetailProduct")]
+        public IActionResult GetDetailProduct(int id)
+        {
+            var result = _storeRepository.GetDetailProduct(id);
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Hot Product
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetHotProduct")]
+        public IActionResult GetHotProduct()
+        {
+            var result = _storeRepository.GetHotProduct();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
         private string generateJwtToken(UserLogin user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Secret").Value));
