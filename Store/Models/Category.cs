@@ -9,4 +9,10 @@ namespace Store.Models
         public string Name { get; set; }
         public int ParentId { get; set; }
     }
+
+    public partial class ParentCategory
+    {
+        public int ParentId { get; set; }
+        public int ParentName{ get; set; }
+    }
 }

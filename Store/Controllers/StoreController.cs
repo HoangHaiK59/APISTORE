@@ -249,6 +249,21 @@ namespace Store.Controllers
         }
 
         /// <summary>
+        /// Get Category Parent List
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetCategoryParentList")]
+        public IActionResult GetCategoryParentList()
+        {
+            var result = _storeRepository.GetCategoryParentList();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
         ///  Get Detail Product
         /// </summary>
         /// <returns></returns>

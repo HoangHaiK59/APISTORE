@@ -211,6 +211,31 @@ namespace Store.Repository
                 }
             }
         }
+        public Response<List<ParentCategory>> GetCategoryParentList()
+        {
+            var storeProduced = "sp_Parent_Category";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<List<ParentCategory>>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    var data = conn.Query<ParentCategory>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    if (data != null)
+                    {
+                        result.data = data;
+                        result.status = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
         public Response<Product> GetDetailProduct(int productId)
         {
             var result = new Response<Product>();

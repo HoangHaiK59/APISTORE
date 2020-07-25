@@ -91,6 +91,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Store.Controllers.StoreController.GetCategoryParentList">
+            <summary>
+            Get Category Parent List
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Store.Controllers.StoreController.GetDetailProduct(System.Int32)">
             <summary>
              Get Detail Product

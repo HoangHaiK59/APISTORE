@@ -26,6 +26,8 @@ namespace Store.Repository
         Response<Product> GetHotProduct();
 
         Response<List<Category>> GetCategoryPage();
+
+        Response<List<ParentCategory>> GetCategoryParentList();
         Task<BaseResponse> AddtoCheckout(Product product);
     }
 }
