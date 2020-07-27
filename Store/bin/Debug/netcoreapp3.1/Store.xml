@@ -85,15 +85,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.GetCategoryPage">
+        <member name="M:Store.Controllers.StoreController.GetCategoryList">
             <summary>
-            Get Category Page
+            Get Category List
             </summary>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.GetCategoryParentList">
             <summary>
             Get Category Parent List
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.AddProduct(Store.Models.ProductSet)">
+            <summary>
+             Add product
             </summary>
             <returns></returns>
         </member>

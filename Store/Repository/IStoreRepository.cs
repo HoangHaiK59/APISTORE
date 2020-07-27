@@ -25,9 +25,10 @@ namespace Store.Repository
         Response<Product> GetDetailProduct(int productId);
         Response<Product> GetHotProduct();
 
-        Response<List<Category>> GetCategoryPage();
+        Response<List<Category>> GetCategoryList();
 
         Response<List<ParentCategory>> GetCategoryParentList();
+        Task<BaseResponse> AddProduct(ProductSet product);
         Task<BaseResponse> AddtoCheckout(Product product);
     }
 }

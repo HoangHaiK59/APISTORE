@@ -185,7 +185,7 @@ namespace Store.Repository
             var result = new Response<Product>();
             return result;
         }
-        public Response<List<Category>> GetCategoryPage() { 
+        public Response<List<Category>> GetCategoryList() { 
         
 
             var storeProduced = "sp_Category";
@@ -255,6 +255,37 @@ namespace Store.Repository
                     var param = new DynamicParameters();
                     param.Add("@product", product);
                     var data = await conn.QueryFirstAsync<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    if (data != null)
+                    {
+                        result.status = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<BaseResponse> AddProduct(ProductSet product)
+        {
+            var storeProduced = "sp_Product_Set";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new BaseResponse();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@id", product.Id);
+                    param.Add("@category_id", product.CategoryId);
+                    param.Add("@name", product.Name);
+                    param.Add("@price", product.Price);
+                    param.Add("@discount", product.Discount);
+                    param.Add("@description", product.Description);
+                    var data = await conn.QueryAsync<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     if (data != null)
                     {
                         result.status = true;

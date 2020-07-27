@@ -234,13 +234,13 @@ namespace Store.Controllers
         }
 
         /// <summary>
-        /// Get Category Page
+        /// Get Category List
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetCategoryPage")]
-        public IActionResult GetCategoryPage()
+        [HttpGet("GetCategoryList")]
+        public IActionResult GetCategoryList()
         {
-            var result = _storeRepository.GetCategoryPage();
+            var result = _storeRepository.GetCategoryList();
             if (result.status)
             {
                 return Ok(result);
@@ -256,6 +256,21 @@ namespace Store.Controllers
         public IActionResult GetCategoryParentList()
         {
             var result = _storeRepository.GetCategoryParentList();
+            if (result.status)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Add product
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("AddProduct")]
+        public async Task<IActionResult> AddProduct(ProductSet product)
+        {
+            var result = await _storeRepository.AddProduct(product);
             if (result.status)
             {
                 return Ok(result);

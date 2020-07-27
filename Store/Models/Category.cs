@@ -13,6 +13,6 @@ namespace Store.Models
     public partial class ParentCategory
     {
         public int ParentId { get; set; }
-        public int ParentName{ get; set; }
+        public string ParentName{ get; set; }
     }
 }
