@@ -18,12 +18,12 @@ namespace Store.Models
     public class BaseResponse
     {
         public string message { get; set; }
-        public bool status { get; set; }
+        public bool success { get; set; }
     }
     public class BaseResponseWithToken
     {
         public string message { get; set; }
-        public bool status { get; set; }
+        public bool success { get; set; }
 
         public string token { get; set; }
     }

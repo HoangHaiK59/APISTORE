@@ -29,6 +29,8 @@ namespace Store.Repository
 
         Response<List<ParentCategory>> GetCategoryParentList();
         Task<BaseResponse> AddProduct(ProductSet product);
+        Response<List<Color>> GetColorList();
+        Response<List<Size>> GetSizeList();
         Task<BaseResponse> AddtoCheckout(Product product);
     }
 }

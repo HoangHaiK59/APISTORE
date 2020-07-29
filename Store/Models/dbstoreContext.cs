@@ -267,6 +267,54 @@ namespace Store.Models
                     .HasDefaultValueSql("('')");
             });
 
+            modelBuilder.Entity<Landing>(entity =>
+            {
+                entity.Property(e => e.name)
+                .IsRequired()
+                .HasColumnName("name")
+                .HasMaxLength(128)
+                .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.url)
+                .IsRequired()
+                .HasColumnName("url")
+                .HasMaxLength(128)
+                .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.discount)
+                .HasColumnName("discount");
+            });
+
+            modelBuilder.Entity<Color>(entity =>
+            {
+                entity.Property(e => e.color)
+                .IsRequired()
+                .HasColumnName("color")
+                .HasMaxLength(32)
+                .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.color_name)
+                .IsRequired()
+                .HasColumnName("color_name")
+                .HasMaxLength(128)
+                .HasDefaultValueSql("('')");
+            });
+
+            modelBuilder.Entity<Size>(entity =>
+            {
+                entity.Property(e => e.size)
+                .IsRequired()
+                .HasColumnName("color")
+                .HasMaxLength(12)
+                .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.name)
+                .IsRequired()
+                .HasColumnName("color_name")
+                .HasMaxLength(32)
+                .HasDefaultValueSql("('')");
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

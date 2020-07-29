@@ -103,6 +103,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Store.Controllers.StoreController.GetColorList">
+            <summary>
+             Get color list
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetSizeList">
+            <summary>
+             Get Size list
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Store.Controllers.StoreController.GetDetailProduct(System.Int32)">
             <summary>
              Get Detail Product

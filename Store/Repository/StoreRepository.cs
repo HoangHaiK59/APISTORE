@@ -51,10 +51,10 @@ namespace Store.Repository
                     if(data != null)
                     {
                         result.data = data;
-                        result.status = true;
+                        result.success = true;
                     } else
                     {
-                        result.status = false;
+                        result.success = false;
                     }
                     return result;
                 }
@@ -78,7 +78,7 @@ namespace Store.Repository
                     param.Add("@username", userLogin.Username);
                     param.Add("@password", userLogin.Password);
                     var result = conn.QueryFirst<BaseResponseWithToken>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
-                    if(result.status)
+                    if(result.success)
                     {
                         result.token = token;
                     }
@@ -127,7 +127,7 @@ namespace Store.Repository
                     if(data != null)
                     {
                         result.data = data;
-                        result.status = true;
+                        result.success = true;
                         return result;
                     }
                     return result;
@@ -200,7 +200,59 @@ namespace Store.Repository
                     if (data != null)
                     {
                         result.data = data;
-                        result.status = true;
+                        result.success = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public Response<List<Color>> GetColorList()
+        {
+            var storeProduced = "sp_Color_Get";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<List<Color>>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    var data = conn.Query<Color>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    if (data != null)
+                    {
+                        result.data = data;
+                        result.success = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public Response<List<Size>> GetSizeList()
+        {
+            var storeProduced = "sp_Size";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<List<Size>>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    var data = conn.Query<Size>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    if (data != null)
+                    {
+                        result.data = data;
+                        result.success = true;
                         return result;
                     }
                     return result;
@@ -225,7 +277,7 @@ namespace Store.Repository
                     if (data != null)
                     {
                         result.data = data;
-                        result.status = true;
+                        result.success = true;
                         return result;
                     }
                     return result;
@@ -257,7 +309,7 @@ namespace Store.Repository
                     var data = await conn.QueryFirstAsync<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     if (data != null)
                     {
-                        result.status = true;
+                        result.success = true;
                         return result;
                     }
                     return result;
@@ -288,7 +340,7 @@ namespace Store.Repository
                     var data = await conn.QueryAsync<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     if (data != null)
                     {
-                        result.status = true;
+                        result.success = true;
                         return result;
                     }
                     return result;

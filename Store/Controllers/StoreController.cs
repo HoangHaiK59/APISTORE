@@ -91,7 +91,7 @@ namespace Store.Controllers
         public IActionResult GetLandingPage(int ordinal)
         {
             var result = _storeRepository.GetLandingPage(ordinal);
-            if(result.status)
+            if(result.success)
             {
                 return Ok(result);
             }
@@ -106,7 +106,7 @@ namespace Store.Controllers
         public IActionResult GetHomePage()
         {
             var result = _storeRepository.GetHomePage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -121,7 +121,7 @@ namespace Store.Controllers
         public IActionResult GetJacketPage()
         {
             var result = _storeRepository.GetJacketPage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -136,7 +136,7 @@ namespace Store.Controllers
         public IActionResult GetJeanPage()
         {
             var result = _storeRepository.GetJeanPage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -151,7 +151,7 @@ namespace Store.Controllers
         public IActionResult GetJumpSuitPage()
         {
             var result = _storeRepository.GetJumpSuitPage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -166,7 +166,7 @@ namespace Store.Controllers
         public IActionResult GetPrincessPage()
         {
             var result = _storeRepository.GetPrincessPage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -181,7 +181,7 @@ namespace Store.Controllers
         public IActionResult GetShirtPage()
         {
             var result = _storeRepository.GetShirtPage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -196,7 +196,7 @@ namespace Store.Controllers
         public IActionResult GetTShirtPage()
         {
             var result = _storeRepository.GetTShirtPage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -211,7 +211,7 @@ namespace Store.Controllers
         public IActionResult GetSkirtPage()
         {
             var result = _storeRepository.GetSkirtPage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -226,7 +226,7 @@ namespace Store.Controllers
         public IActionResult GetShortPage()
         {
             var result = _storeRepository.GetShortPage();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -241,7 +241,7 @@ namespace Store.Controllers
         public IActionResult GetCategoryList()
         {
             var result = _storeRepository.GetCategoryList();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -256,7 +256,7 @@ namespace Store.Controllers
         public IActionResult GetCategoryParentList()
         {
             var result = _storeRepository.GetCategoryParentList();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -271,7 +271,37 @@ namespace Store.Controllers
         public async Task<IActionResult> AddProduct(ProductSet product)
         {
             var result = await _storeRepository.AddProduct(product);
-            if (result.status)
+            if (result.success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get color list
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetColorList")]
+        public IActionResult GetColorList()
+        {
+            var result = _storeRepository.GetColorList();
+            if (result.success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Size list
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetSizeList")]
+        public IActionResult GetSizeList()
+        {
+            var result = _storeRepository.GetSizeList();
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -286,7 +316,7 @@ namespace Store.Controllers
         public IActionResult GetDetailProduct(int id)
         {
             var result = _storeRepository.GetDetailProduct(id);
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }
@@ -301,7 +331,7 @@ namespace Store.Controllers
         public IActionResult GetHotProduct()
         {
             var result = _storeRepository.GetHotProduct();
-            if (result.status)
+            if (result.success)
             {
                 return Ok(result);
             }

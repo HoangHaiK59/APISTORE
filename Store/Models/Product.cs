@@ -13,6 +13,9 @@ namespace Store.Models
         public string Description { get; set; }
         public long Created { get; set; }
         public long View { get; set; }
+        public string[] size { get; set; }
+        public string[] color { get; set; }
+        public string[] image_url { get; set; }
     }
 
     public partial class ProductSet
@@ -23,5 +26,8 @@ namespace Store.Models
         public decimal Price { get; set; }
         public long Discount { get; set; }
         public string Description { get; set; }
+        public string[] size { get; set; }
+        public string[] color { get; set; }
+        public string[] image_url { get; set; }
     }
 }
