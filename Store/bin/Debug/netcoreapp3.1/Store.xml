@@ -55,7 +55,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.GetPrincessPage">
+        <member name="M:Store.Controllers.StoreController.GetDressPage(System.Int32,System.Int32)">
             <summary>
              Get Princess Page
             </summary>
@@ -97,7 +97,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.AddProduct(Store.Models.ProductSet)">
+        <member name="M:Store.Controllers.StoreController.AddProduct(Store.Models.ProductInfo)">
             <summary>
              Add product
             </summary>

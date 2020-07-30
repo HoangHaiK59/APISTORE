@@ -43,9 +43,8 @@ namespace Store.Controllers
         [HttpGet("user")]
         public IActionResult GetUserInfo(string username)
         {
-            string token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            var validate = ValidateToken(token);
-            if(validate == null)
+            var validate = GetAuthorizeHeader();
+            if (validate == null)
             {
                 return Unauthorized();
             }
@@ -162,10 +161,10 @@ namespace Store.Controllers
         ///  Get Princess Page
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetPrincessPage")]
-        public IActionResult GetPrincessPage()
+        [HttpGet("GetDressPage")]
+        public IActionResult GetDressPage(int category_id, int offSet)
         {
-            var result = _storeRepository.GetPrincessPage();
+            var result = _storeRepository.GetDressPage(category_id, offSet);
             if (result.success)
             {
                 return Ok(result);
@@ -268,9 +267,14 @@ namespace Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("AddProduct")]
-        public async Task<IActionResult> AddProduct(ProductSet product)
+        public async Task<IActionResult> AddProduct([FromBody] ProductInfo productInfo)
         {
-            var result = await _storeRepository.AddProduct(product);
+            var validate = GetAuthorizeHeader();
+            if (validate == null)
+            {
+                return Unauthorized();
+            }
+            var result = await _storeRepository.AddProduct(productInfo);
             if (result.success)
             {
                 return Ok(result);
@@ -426,6 +430,13 @@ namespace Store.Controllers
             {
                 return false;
             }
+        }
+
+        JwtSecurityToken GetAuthorizeHeader()
+        {
+            string token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            var validate = ValidateToken(token);
+            return validate;
         }
 
     }

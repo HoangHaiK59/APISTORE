@@ -13,6 +13,7 @@ using Store.Models;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace Store.Repository
 {
@@ -175,10 +176,32 @@ namespace Store.Repository
             var result = new Response<Product>();
             return result;
         }
-        public Response<Product> GetPrincessPage()
+        public Response<List<Product>> GetDressPage(int category_id, int offSet)
         {
-            var result = new Response<Product>();
-            return result;
+            var storeProduced = "sp_Product_Get";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<List<Product>>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("category_id", category_id);
+                    param.Add("offSet", offSet);
+                    var data = conn.Query<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    if (data != null)
+                    {
+                        result.data = data;
+                        result.success = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
         public Response<Product> GetSkirtPage()
         {
@@ -290,8 +313,30 @@ namespace Store.Repository
         }
         public Response<Product> GetDetailProduct(int productId)
         {
-            var result = new Response<Product>();
-            return result;
+            var storeProduced = "sp_Product_Detail";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<Product>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@id", productId);
+                    var data = conn.QueryFirstOrDefault<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    if (data != null)
+                    {
+                        result.success = true;
+                        result.data = data;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public async Task<BaseResponse> AddtoCheckout(Product product)
@@ -321,28 +366,28 @@ namespace Store.Repository
             }
         }
 
-        public async Task<BaseResponse> AddProduct(ProductSet product)
+        public async Task<BaseResponse> AddProduct([FromBody] ProductInfo productInfo)
         {
             var storeProduced = "sp_Product_Set";
+            string[] converts = (from i in productInfo.image_url select JsonConvert.SerializeObject(i)).ToArray<string>();
+            string image_url = string.Join(";", converts);
+            string[] sizeConvert = (from i in productInfo.product.size select i.ToString()).ToArray<string>();
+            string size = string.Join(",", sizeConvert);
             using (var conn = new SqlConnection(_connectionString))
             {
-                var result = new BaseResponse();
                 try
                 {
                     conn.Open();
                     var param = new DynamicParameters();
-                    param.Add("@id", product.Id);
-                    param.Add("@category_id", product.CategoryId);
-                    param.Add("@name", product.Name);
-                    param.Add("@price", product.Price);
-                    param.Add("@discount", product.Discount);
-                    param.Add("@description", product.Description);
-                    var data = await conn.QueryAsync<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
-                    if (data != null)
-                    {
-                        result.success = true;
-                        return result;
-                    }
+                    param.Add("@id", productInfo.product.Id);
+                    param.Add("@category_id", productInfo.product.CategoryId);
+                    param.Add("@name", productInfo.product.Name);
+                    param.Add("@price", productInfo.product.Price);
+                    param.Add("@discount", productInfo.product.Discount);
+                    param.Add("@description", productInfo.product.Description);
+                    param.Add("@size", size);
+                    param.Add("@image_url", image_url);
+                    var result = await conn.QueryFirstAsync<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     return result;
                 }
                 catch (Exception ex)

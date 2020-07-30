@@ -20,7 +20,7 @@ namespace Store.Repository
         Response<Product> GetJeanPage();
         Response<Product> GetJumpSuitPage();
         Response<Product> GetShortPage();
-        Response<Product> GetPrincessPage();
+        Response<List<Product>> GetDressPage(int category_id, int offSet);
         Response<Product> GetSkirtPage();
         Response<Product> GetDetailProduct(int productId);
         Response<Product> GetHotProduct();
@@ -28,7 +28,7 @@ namespace Store.Repository
         Response<List<Category>> GetCategoryList();
 
         Response<List<ParentCategory>> GetCategoryParentList();
-        Task<BaseResponse> AddProduct(ProductSet product);
+        Task<BaseResponse> AddProduct([FromBody] ProductInfo productInfo);
         Response<List<Color>> GetColorList();
         Response<List<Size>> GetSizeList();
         Task<BaseResponse> AddtoCheckout(Product product);
