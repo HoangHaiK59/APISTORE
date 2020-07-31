@@ -26,7 +26,7 @@ namespace Store.Models
         public string message { get; set; }
         public bool success { get; set; }
         public string error { get; set; }
-        public string token { get; set; }
+        public Token token { get; set; }
     }
 
     public class ResponseWrapper

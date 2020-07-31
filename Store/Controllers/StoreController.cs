@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Store.Repository;
 using Store.Models;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +16,9 @@ using System.Text;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Http;
+using Store.Services.Interfaces;
 
 namespace Store.Controllers
 {
@@ -24,15 +26,14 @@ namespace Store.Controllers
     [ApiController]
     public class StoreController : ControllerBase
     {
-        private IStoreRepository _storeRepository;
         private IConfiguration _configuration;
-
-        public StoreController(StoreRepository storeRepository)
+        private readonly IStoreService _storeService;
+        public StoreController(IStoreService storeService)
         {
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Environment.CurrentDirectory)
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             _configuration = builder.Build();
-            _storeRepository = storeRepository;
+            _storeService = storeService;
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace Store.Controllers
             {
                 return Unauthorized();
             }
-            var model = _storeRepository.GetUserInfo(username);
+            var model = _storeService.GetUserInfo(username);
             return Ok(model);
         }
 
@@ -60,8 +61,7 @@ namespace Store.Controllers
         [HttpPost("authorize")]
         public BaseResponseWithToken Authorize([FromBody] UserLogin userLogin)
         {
-            string token = generateJwtToken(userLogin);
-            var result = _storeRepository.Authorize(token , userLogin);
+            var result = _storeService.Authorize(userLogin);
             return result;
         }
 
@@ -73,13 +73,12 @@ namespace Store.Controllers
         [HttpPost("subscribe")]
         public IActionResult Subscribe([FromBody] Subscribe subscribe)
         {
-            var valid = isValidEmail(subscribe.email);
-            if (valid)
+           if(isValidEmail(subscribe.email) && !string.IsNullOrEmpty(subscribe.email))
             {
-                var result = _storeRepository.Subscribe(subscribe);
+                var result = _storeService.Subscribe(subscribe);
                 return Ok(result);
             }
-            return BadRequest();
+           return BadRequest();
         }
 
         /// <summary>
@@ -89,7 +88,7 @@ namespace Store.Controllers
         [HttpGet("GetLandingPage")]
         public IActionResult GetLandingPage(int ordinal)
         {
-            var result = _storeRepository.GetLandingPage(ordinal);
+            var result = _storeService.GetLandingPage(ordinal);
             if(result.success)
             {
                 return Ok(result);
@@ -104,7 +103,7 @@ namespace Store.Controllers
         [HttpGet("GetHomePage")]
         public IActionResult GetHomePage()
         {
-            var result = _storeRepository.GetHomePage();
+            var result = _storeService.GetHomePage();
             if (result.success)
             {
                 return Ok(result);
@@ -119,7 +118,7 @@ namespace Store.Controllers
         [HttpGet("GetJacketPage")]
         public IActionResult GetJacketPage()
         {
-            var result = _storeRepository.GetJacketPage();
+            var result = _storeService.GetJacketPage();
             if (result.success)
             {
                 return Ok(result);
@@ -134,7 +133,7 @@ namespace Store.Controllers
         [HttpGet("GetJeanPage")]
         public IActionResult GetJeanPage()
         {
-            var result = _storeRepository.GetJeanPage();
+            var result = _storeService.GetJeanPage();
             if (result.success)
             {
                 return Ok(result);
@@ -149,7 +148,7 @@ namespace Store.Controllers
         [HttpGet("GetJumpSuitPage")]
         public IActionResult GetJumpSuitPage()
         {
-            var result = _storeRepository.GetJumpSuitPage();
+            var result = _storeService.GetJumpSuitPage();
             if (result.success)
             {
                 return Ok(result);
@@ -164,7 +163,7 @@ namespace Store.Controllers
         [HttpGet("GetDressPage")]
         public IActionResult GetDressPage(int category_id, int offSet)
         {
-            var result = _storeRepository.GetDressPage(category_id, offSet);
+            var result = _storeService.GetDressPage(category_id, offSet);
             if (result.success)
             {
                 return Ok(result);
@@ -179,7 +178,7 @@ namespace Store.Controllers
         [HttpGet("GetShirtPage")]
         public IActionResult GetShirtPage()
         {
-            var result = _storeRepository.GetShirtPage();
+            var result = _storeService.GetShirtPage();
             if (result.success)
             {
                 return Ok(result);
@@ -194,7 +193,7 @@ namespace Store.Controllers
         [HttpGet("GetTShirtPage")]
         public IActionResult GetTShirtPage()
         {
-            var result = _storeRepository.GetTShirtPage();
+            var result = _storeService.GetTShirtPage();
             if (result.success)
             {
                 return Ok(result);
@@ -209,7 +208,7 @@ namespace Store.Controllers
         [HttpGet("GetSkirtPage")]
         public IActionResult GetSkirtPage()
         {
-            var result = _storeRepository.GetSkirtPage();
+            var result = _storeService.GetSkirtPage();
             if (result.success)
             {
                 return Ok(result);
@@ -224,7 +223,7 @@ namespace Store.Controllers
         [HttpGet("GetShortPage")]
         public IActionResult GetShortPage()
         {
-            var result = _storeRepository.GetShortPage();
+            var result = _storeService.GetShortPage();
             if (result.success)
             {
                 return Ok(result);
@@ -239,7 +238,7 @@ namespace Store.Controllers
         [HttpGet("GetCategoryList")]
         public IActionResult GetCategoryList()
         {
-            var result = _storeRepository.GetCategoryList();
+            var result = _storeService.GetCategoryList();
             if (result.success)
             {
                 return Ok(result);
@@ -254,7 +253,7 @@ namespace Store.Controllers
         [HttpGet("GetCategoryParentList")]
         public IActionResult GetCategoryParentList()
         {
-            var result = _storeRepository.GetCategoryParentList();
+            var result = _storeService.GetCategoryParentList();
             if (result.success)
             {
                 return Ok(result);
@@ -274,7 +273,7 @@ namespace Store.Controllers
             {
                 return Unauthorized();
             }
-            var result = await _storeRepository.AddProduct(productInfo);
+            var result = await _storeService.AddProduct(productInfo);
             if (result.success)
             {
                 return Ok(result);
@@ -289,7 +288,7 @@ namespace Store.Controllers
         [HttpGet("GetColorList")]
         public IActionResult GetColorList()
         {
-            var result = _storeRepository.GetColorList();
+            var result = _storeService.GetColorList();
             if (result.success)
             {
                 return Ok(result);
@@ -304,7 +303,7 @@ namespace Store.Controllers
         [HttpGet("GetSizeList")]
         public IActionResult GetSizeList()
         {
-            var result = _storeRepository.GetSizeList();
+            var result = _storeService.GetSizeList();
             if (result.success)
             {
                 return Ok(result);
@@ -319,10 +318,33 @@ namespace Store.Controllers
         [HttpGet("GetDetailProduct")]
         public IActionResult GetDetailProduct(int id)
         {
-            var result = _storeRepository.GetDetailProduct(id);
+            var result = _storeService.GetDetailProduct(id);
             if (result.success)
             {
                 return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get All Product
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllProduct")]
+        public IActionResult GetAllProduct(int offSet, int pageSize)
+        {
+            var validate = GetAuthorizeHeader();
+            if(validate == null)
+            {
+                return Unauthorized();
+            }
+            var result = _storeService.GetAllProduct(offSet, pageSize);
+            if (result.Count > 0)
+            {
+                var response = new Response<List<Product>>();
+                response.data = result;
+                response.success = true;
+                return Ok(response);
             }
             return BadRequest();
         }
@@ -334,7 +356,7 @@ namespace Store.Controllers
         [HttpGet("GetHotProduct")]
         public IActionResult GetHotProduct()
         {
-            var result = _storeRepository.GetHotProduct();
+            var result = _storeService.GetHotProduct();
             if (result.success)
             {
                 return Ok(result);
@@ -342,24 +364,15 @@ namespace Store.Controllers
             return BadRequest();
         }
 
-        private string generateJwtToken(UserLogin user)
+        JwtSecurityToken GetAuthorizeHeader()
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Secret").Value));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
-            var claims = new[]
+            string token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            if (string.IsNullOrEmpty(token))
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                return null;
             };
-
-            var token = new JwtSecurityToken(
-                          null,
-                          null,
-                          claims,
-                          expires: DateTime.Now.AddDays(1),
-                          signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var validate = ValidateToken(token);
+            return validate;
         }
 
         private JwtSecurityToken ValidateToken(string token)
@@ -396,7 +409,7 @@ namespace Store.Controllers
 
         private static bool isValidEmail(string email)
         {
-            if(string.IsNullOrWhiteSpace(email))
+            if (string.IsNullOrWhiteSpace(email))
             {
                 return false;
             }
@@ -404,7 +417,7 @@ namespace Store.Controllers
             try
             {
                 email = Regex.Replace(email, @"(@)(.+)$", DomainMapper, RegexOptions.None, TimeSpan.FromMilliseconds(200));
-                string DomainMapper( Match match )
+                string DomainMapper(Match match)
                 {
                     var idn = new IdnMapping();
                     var domainName = idn.GetAscii(match.Groups[2].Value);
@@ -430,13 +443,6 @@ namespace Store.Controllers
             {
                 return false;
             }
-        }
-
-        JwtSecurityToken GetAuthorizeHeader()
-        {
-            string token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            var validate = ValidateToken(token);
-            return validate;
         }
 
     }

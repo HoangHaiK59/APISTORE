@@ -14,7 +14,8 @@ namespace Store.Models
         public DateTime Created { get; set; }
         public long View { get; set; }
         public string size { get; set; }
-        public string image_url { get; set; }
+        public string images { get; set; }
+        public string image { get; set; }
     }
 
     public class ColorMapUrl
@@ -26,7 +27,7 @@ namespace Store.Models
     public class ProductInfo
     {
         public ProductSet product { get; set; }
-        public ColorMapUrl[] image_url { get; set; }
+        public ColorMapUrl[] images { get; set; }
     }
 
     public partial class ProductSet
@@ -38,5 +39,6 @@ namespace Store.Models
         public long Discount { get; set; }
         public string Description { get; set; }
         public string[] size { get; set; }
+        public string image { get; set; }
     }
 }

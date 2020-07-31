@@ -21,7 +21,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using Store.Models;
-using Store.Repository;
+using Store.Repositories;
+using Store.Repositories.Interfaces;
+using Store.Services;
+using Store.Services.Interfaces;
 
 namespace Store
 {
@@ -76,7 +79,8 @@ namespace Store
             });
  
             services.Configure<GetConfiguration>(con => Configuration.GetSection("ConnectionStrings").Bind(con));
-            services.AddScoped<StoreRepository>();
+            services.AddScoped<IStoreService, StoreService>();
+            services.AddScoped<IStoreRepository, StoreRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                     {

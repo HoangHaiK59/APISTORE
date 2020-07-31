@@ -121,6 +121,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Store.Controllers.StoreController.GetAllProduct(System.Int32,System.Int32)">
+            <summary>
+             Get All Product
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Store.Controllers.StoreController.GetHotProduct">
             <summary>
              Get Hot Product

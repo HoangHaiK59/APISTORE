@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Store.Models;
 
-namespace Store.Repository
+namespace Store.Repositories.Interfaces
 {
-    interface IStoreRepository
+    public interface IStoreRepository
     {
         Response<UserInfo> GetUserInfo(string username);
-        BaseResponseWithToken Authorize(string token , [FromBody] UserLogin userLogin);
+        BaseResponseWithToken Authorize(Token token, [FromBody] UserLogin userLogin);
         BaseResponse Subscribe([FromBody] Subscribe subscribe);
         Response<Landing> GetLandingPage(int ordinal);
         Response<Product> GetHomePage();
@@ -31,6 +31,7 @@ namespace Store.Repository
         Task<BaseResponse> AddProduct([FromBody] ProductInfo productInfo);
         Response<List<Color>> GetColorList();
         Response<List<Size>> GetSizeList();
-        Task<BaseResponse> AddtoCheckout(Product product);
+        List<Product> GetAllProduct(int offSet, int pageSize);
+        Task<BaseResponse> AddtoCheckout([FromBody] Product product);
     }
 }

@@ -14,8 +14,9 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Newtonsoft.Json;
+using Store.Repositories.Interfaces;
 
-namespace Store.Repository
+namespace Store.Repositories
 {
 
     public class StoreRepository: IStoreRepository
@@ -66,7 +67,7 @@ namespace Store.Repository
             }
         }
 
-        public BaseResponseWithToken Authorize(string token , [FromBody] UserLogin userLogin)
+        public BaseResponseWithToken Authorize(Token token, [FromBody] UserLogin userLogin)
         {
             var storeProduced = "sp_User";
 
@@ -339,7 +340,28 @@ namespace Store.Repository
             }
         }
 
-        public async Task<BaseResponse> AddtoCheckout(Product product)
+        public List<Product> GetAllProduct(int offSet, int pageSize)
+        {
+            var storeProduced = "sp_Product";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@offSet", offSet);
+                    param.Add("@pageSize", pageSize);
+                    var result = conn.Query<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public async Task<BaseResponse> AddtoCheckout([FromBody] Product product)
         {
             var storeProduced = "sp_Checkout_Set";
 
@@ -369,7 +391,7 @@ namespace Store.Repository
         public async Task<BaseResponse> AddProduct([FromBody] ProductInfo productInfo)
         {
             var storeProduced = "sp_Product_Set";
-            string[] converts = (from i in productInfo.image_url select JsonConvert.SerializeObject(i)).ToArray<string>();
+            string[] converts = (from i in productInfo.images select JsonConvert.SerializeObject(i)).ToArray<string>();
             string image_url = string.Join(";", converts);
             string[] sizeConvert = (from i in productInfo.product.size select i.ToString()).ToArray<string>();
             string size = string.Join(",", sizeConvert);
