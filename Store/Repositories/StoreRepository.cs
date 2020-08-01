@@ -392,7 +392,7 @@ namespace Store.Repositories
         {
             var storeProduced = "sp_Product_Set";
             string[] converts = (from i in productInfo.images select JsonConvert.SerializeObject(i)).ToArray<string>();
-            string image_url = string.Join(";", converts);
+            string images = string.Join(";", converts);
             string[] sizeConvert = (from i in productInfo.product.size select i.ToString()).ToArray<string>();
             string size = string.Join(",", sizeConvert);
             using (var conn = new SqlConnection(_connectionString))
@@ -402,13 +402,15 @@ namespace Store.Repositories
                     conn.Open();
                     var param = new DynamicParameters();
                     param.Add("@id", productInfo.product.Id);
-                    param.Add("@category_id", productInfo.product.CategoryId);
+                    param.Add("@category_id", productInfo.product.categoryId);
                     param.Add("@name", productInfo.product.Name);
                     param.Add("@price", productInfo.product.Price);
                     param.Add("@discount", productInfo.product.Discount);
                     param.Add("@description", productInfo.product.Description);
+                    param.Add("@image", productInfo.product.image);
+                    param.Add("@status", productInfo.product.status);
                     param.Add("@size", size);
-                    param.Add("@image_url", image_url);
+                    param.Add("@images", images);
                     var result = await conn.QueryFirstAsync<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     return result;
                 }

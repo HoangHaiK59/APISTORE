@@ -16,6 +16,8 @@ namespace Store.Models
         public string size { get; set; }
         public string images { get; set; }
         public string image { get; set; }
+        public bool status { get; set; }
+        public string statusName { get; set; }
     }
 
     public class ColorMapUrl
@@ -33,12 +35,13 @@ namespace Store.Models
     public partial class ProductSet
     {
         public long Id { get; set; }
-        public int CategoryId { get; set; }
+        public int categoryId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public long Discount { get; set; }
         public string Description { get; set; }
         public string[] size { get; set; }
         public string image { get; set; }
+        public bool status { get; set; }
     }
 }
