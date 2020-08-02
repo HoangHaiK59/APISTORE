@@ -28,13 +28,6 @@ E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\AutoMapper.dll
-E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
-E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
-E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
-E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
-E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
-E:\NETCORE\Store\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
-E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Store.deps.json
@@ -151,3 +144,5 @@ E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\ASP\STORE\Store\bin\Debug\netcoreapp3.1\Store.xml
 E:\ASP\STORE\Store\obj\Debug\netcoreapp3.1\Store.xml
+E:\NETCORE\Store\bin\Debug\netcoreapp3.1\Store.xml
+E:\NETCORE\Store\obj\Debug\netcoreapp3.1\Store.xml

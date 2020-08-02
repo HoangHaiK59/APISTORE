@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ASP\\STORE\\Store\\Store.csproj": {}
+    "E:\\NETCORE\\Store\\Store.csproj": {}
   },
   "projects": {
-    "E:\\ASP\\STORE\\Store\\Store.csproj": {
+    "E:\\NETCORE\\Store\\Store.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ASP\\STORE\\Store\\Store.csproj",
+        "projectUniqueName": "E:\\NETCORE\\Store\\Store.csproj",
         "projectName": "Store",
-        "projectPath": "E:\\ASP\\STORE\\Store\\Store.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\ASP\\STORE\\Store\\obj\\",
+        "projectPath": "E:\\NETCORE\\Store\\Store.csproj",
+        "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
+        "outputPath": "E:\\NETCORE\\Store\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
