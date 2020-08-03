@@ -118,6 +118,10 @@ namespace Store.Services
         {
             return _storeRepo.GetAllProduct(offSet, pageSize);
         }
+        public BaseResponse DeleteProduct(int id)
+        {
+            return _storeRepo.DeleteProduct(id);
+        }
         public Task<BaseResponse> AddtoCheckout([FromBody] Product product)
         {
             return _storeRepo.AddtoCheckout(product);

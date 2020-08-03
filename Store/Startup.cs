@@ -52,7 +52,8 @@ namespace Store
                 options.AddPolicy(name: "mypolicy", builder =>
                 {
                     builder.WithOrigins(Origins).SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .WithHeaders(HeaderNames.CacheControl, HeaderNames.Origin, HeaderNames.ContentType, HeaderNames.Authorization);
+                    .AllowAnyMethod()
+                    .WithHeaders(HeaderNames.CacheControl, HeaderNames.Origin, HeaderNames.ContentType, HeaderNames.Authorization, HeaderNames.AccessControlAllowHeaders, HeaderNames.AccessControlAllowMethods);
                 });
             });
             services.AddSwaggerGen(c => {

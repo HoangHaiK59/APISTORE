@@ -340,6 +340,26 @@ namespace Store.Repositories
             }
         }
 
+        public BaseResponse DeleteProduct(int id)
+        {
+            var storeProduced = "sp_Product_Delete";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@id", id);
+                    var result = conn.QueryFirst<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         public List<Product> GetAllProduct(int offSet, int pageSize)
         {
             var storeProduced = "sp_Product";

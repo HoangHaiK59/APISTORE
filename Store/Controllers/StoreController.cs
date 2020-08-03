@@ -350,6 +350,26 @@ namespace Store.Controllers
         }
 
         /// <summary>
+        ///  Delete Product
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("DeleteProduct")]
+        public IActionResult DeleteProduct(int id)
+        {
+            var validate = GetAuthorizeHeader();
+            if (validate == null)
+            {
+                return Unauthorized();
+            }
+            var result = _storeService.DeleteProduct(id);
+            if (result.success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
         ///  Get Hot Product
         /// </summary>
         /// <returns></returns>

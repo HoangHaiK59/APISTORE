@@ -32,6 +32,7 @@ namespace Store.Services.Interfaces
         Response<List<Color>> GetColorList();
         Response<List<Size>> GetSizeList();
         List<Product> GetAllProduct(int offSet, int pageSize);
+        BaseResponse DeleteProduct(int id);
         Task<BaseResponse> AddtoCheckout([FromBody] Product product);
     }
 }
