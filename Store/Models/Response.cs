@@ -26,6 +26,7 @@ namespace Store.Models
         public string message { get; set; }
         public bool success { get; set; }
         public string error { get; set; }
+        public Guid userId { get; set; }
         public Token token { get; set; }
     }
 

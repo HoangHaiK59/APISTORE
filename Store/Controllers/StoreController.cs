@@ -39,17 +39,17 @@ namespace Store.Controllers
         /// <summary>
         ///  Get User Info
         /// </summary>
-        /// <param username="string"></param>
+        /// <param email="string"></param>
         /// <returns></returns>
         [HttpGet("user")]
-        public IActionResult GetUserInfo(string username)
+        public IActionResult GetUserInfo(Guid userId)
         {
             var validate = GetAuthorizeHeader();
             if (validate == null)
             {
                 return Unauthorized();
             }
-            var model = _storeService.GetUserInfo(username);
+            var model = _storeService.GetUserInfo(userId);
             return Ok(model);
         }
 
@@ -84,6 +84,7 @@ namespace Store.Controllers
         /// <summary>
         ///  Get Landing Page
         /// </summary>
+        /// <param ordinal="int"></param>
         /// <returns></returns>
         [HttpGet("GetLandingPage")]
         public IActionResult GetLandingPage(int ordinal)
@@ -264,6 +265,7 @@ namespace Store.Controllers
         /// <summary>
         ///  Add product
         /// </summary>
+        /// <param productInfo="ProductInfo"></param>
         /// <returns></returns>
         [HttpPost("AddProduct")]
         public async Task<IActionResult> AddProduct([FromBody] ProductInfo productInfo)
@@ -314,6 +316,7 @@ namespace Store.Controllers
         /// <summary>
         ///  Get Detail Product
         /// </summary>
+        ///  <param id="int"></param>
         /// <returns></returns>
         [HttpGet("GetDetailProduct")]
         public IActionResult GetDetailProduct(int id)
@@ -329,6 +332,8 @@ namespace Store.Controllers
         /// <summary>
         ///  Get All Product
         /// </summary>
+        /// <param offSet="int"></param>
+        /// <param pageSize="int"></param>
         /// <returns></returns>
         [HttpGet("GetAllProduct")]
         public IActionResult GetAllProduct(int offSet, int pageSize)
@@ -352,6 +357,7 @@ namespace Store.Controllers
         /// <summary>
         ///  Delete Product
         /// </summary>
+        /// <param id="int"></param>
         /// <returns></returns>
         [HttpDelete("DeleteProduct")]
         public IActionResult DeleteProduct(int id)
@@ -367,6 +373,18 @@ namespace Store.Controllers
                 return Ok(result);
             }
             return BadRequest();
+        }
+
+        /// <summary>
+        ///  Register
+        /// </summary>
+        /// <param user="Register"></param>
+        /// <returns></returns>
+        [HttpPost("Register")]
+        public IActionResult Register([FromBody] Register user)
+        {
+            var result = _storeService.Register(user);
+            return Ok(result);
         }
 
         /// <summary>

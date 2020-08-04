@@ -38,7 +38,7 @@ namespace Store.Repositories
             _connectionString = _configuration.GetConnectionString("DBStore");
 
         }
-        public Response<UserInfo> GetUserInfo( string username)
+        public Response<UserInfo> GetUserInfo( Guid userId)
         {
             var storeProduced = "sp_User_Get";
             using (var conn = new SqlConnection(_connectionString))
@@ -48,7 +48,7 @@ namespace Store.Repositories
                 {
                     conn.Open();
                     var param = new DynamicParameters();
-                    param.Add("@username", username);
+                    param.Add("@userId", userId);
                     var data = conn.QueryFirst<UserInfo>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     if(data != null)
                     {
@@ -77,7 +77,7 @@ namespace Store.Repositories
                 {
                     conn.Open();
                     var param = new DynamicParameters();
-                    param.Add("@username", userLogin.Username);
+                    param.Add("@email", userLogin.Email);
                     param.Add("@password", userLogin.Password);
                     var result = conn.QueryFirst<BaseResponseWithToken>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     if(result.success)
@@ -350,6 +350,30 @@ namespace Store.Repositories
                     conn.Open();
                     var param = new DynamicParameters();
                     param.Add("@id", id);
+                    var result = conn.QueryFirst<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public BaseResponse Register([FromBody] Register user)
+        {
+            var storeProduced = "sp_User_Register";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@password", user.Password);
+                    param.Add("@firstname", user.FirstName);
+                    param.Add("@lastname", user.LastName);
+                    param.Add("@email", user.Email);
+                    param.Add("@phone", user.Phone);
+                    param.Add("@address", user.Address);
                     var result = conn.QueryFirst<BaseResponse>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     return result;
                 }

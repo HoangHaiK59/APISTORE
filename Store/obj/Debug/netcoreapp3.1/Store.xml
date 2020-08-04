@@ -4,11 +4,11 @@
         <name>Store</name>
     </assembly>
     <members>
-        <member name="M:Store.Controllers.StoreController.GetUserInfo(System.String)">
+        <member name="M:Store.Controllers.StoreController.GetUserInfo(System.Guid)">
             <summary>
              Get User Info
             </summary>
-            <param username="string"></param>
+            <param email="string"></param>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.Authorize(Store.Models.UserLogin)">
@@ -29,6 +29,7 @@
             <summary>
              Get Landing Page
             </summary>
+            <param ordinal="int"></param>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.GetHomePage">
@@ -101,6 +102,7 @@
             <summary>
              Add product
             </summary>
+            <param productInfo="ProductInfo"></param>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.GetColorList">
@@ -119,18 +121,29 @@
             <summary>
              Get Detail Product
             </summary>
+             <param id="int"></param>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.GetAllProduct(System.Int32,System.Int32)">
             <summary>
              Get All Product
             </summary>
+            <param offSet="int"></param>
+            <param pageSize="int"></param>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.DeleteProduct(System.Int32)">
             <summary>
              Delete Product
             </summary>
+            <param id="int"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.Register(Store.Models.Register)">
+            <summary>
+             Register
+            </summary>
+            <param user="Register"></param>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.GetHotProduct">

@@ -242,9 +242,15 @@ namespace Store.Models
                     .HasMaxLength(50)
                     .HasDefaultValueSql("('')");
 
-                entity.Property(e => e.Fullname)
+                entity.Property(e => e.FirstName)
                     .IsRequired()
-                    .HasColumnName("fullname")
+                    .HasColumnName("firstname")
+                    .HasMaxLength(50)
+                    .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasColumnName("lastname")
                     .HasMaxLength(50)
                     .HasDefaultValueSql("('')");
 
@@ -260,10 +266,10 @@ namespace Store.Models
                     .HasMaxLength(15)
                     .HasDefaultValueSql("('')");
 
-                entity.Property(e => e.Username)
+                entity.Property(e => e.Email)
                     .IsRequired()
-                    .HasColumnName("username")
-                    .HasMaxLength(32)
+                    .HasColumnName("email")
+                    .HasMaxLength(64)
                     .HasDefaultValueSql("('')");
             });
 

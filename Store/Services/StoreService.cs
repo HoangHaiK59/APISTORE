@@ -30,9 +30,9 @@ namespace Store.Services
             _configuration = builder.Build();
             _storeRepo = storeRepo;
         }
-        public Response<UserInfo> GetUserInfo(string username)
+        public Response<UserInfo> GetUserInfo(Guid userId)
         {
-            return _storeRepo.GetUserInfo(username);
+            return _storeRepo.GetUserInfo(userId);
         }
         public BaseResponseWithToken Authorize([FromBody] UserLogin userLogin)
         {
@@ -122,6 +122,10 @@ namespace Store.Services
         {
             return _storeRepo.DeleteProduct(id);
         }
+        public BaseResponse Register([FromBody] Register user)
+        {
+            return _storeRepo.Register(user);
+        }
         public Task<BaseResponse> AddtoCheckout([FromBody] Product product)
         {
             return _storeRepo.AddtoCheckout(product);
@@ -133,7 +137,7 @@ namespace Store.Services
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 

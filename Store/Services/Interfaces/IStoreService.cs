@@ -9,7 +9,7 @@ namespace Store.Services.Interfaces
 {
     public interface IStoreService
     {
-        Response<UserInfo> GetUserInfo(string username);
+        Response<UserInfo> GetUserInfo(Guid userId);
         BaseResponseWithToken Authorize( [FromBody] UserLogin userLogin);
         BaseResponse Subscribe([FromBody] Subscribe subscribe);
         Response<Landing> GetLandingPage(int ordinal);
@@ -33,6 +33,7 @@ namespace Store.Services.Interfaces
         Response<List<Size>> GetSizeList();
         List<Product> GetAllProduct(int offSet, int pageSize);
         BaseResponse DeleteProduct(int id);
+        BaseResponse Register([FromBody] Register user);
         Task<BaseResponse> AddtoCheckout([FromBody] Product product);
     }
 }
