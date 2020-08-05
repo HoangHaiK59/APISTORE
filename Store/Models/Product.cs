@@ -20,6 +20,12 @@ namespace Store.Models
         public string statusName { get; set; }
     }
 
+    public partial class ProductGet
+    {
+        public long total { get; set; }
+        public List<Product> products { get; set; }
+    }
+
     public class ColorMapUrl
     {
         public string color { get; set; }

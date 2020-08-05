@@ -157,10 +157,33 @@ namespace Store.Repositories
             var result = new Response<Product>();
             return result;
         }
-        public Response<Product> GetTShirtPage()
+        public Response<List<Product>> GetTShirtPage(int category_id, int offSet, int pageSize)
         {
-            var result = new Response<Product>();
-            return result;
+            var storeProduced = "sp_Product_Get";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<List<Product>>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("category_id", category_id);
+                    param.Add("offSet", offSet);
+                    param.Add("pageSize", pageSize);
+                    var data = conn.Query<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    if (data.Count > 0)
+                    {
+                        result.data = data;
+                        result.success = true;
+                        return result;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
         public Response<Product> GetJeanPage()
         {
@@ -177,7 +200,7 @@ namespace Store.Repositories
             var result = new Response<Product>();
             return result;
         }
-        public Response<List<Product>> GetDressPage(int category_id, int offSet)
+        public Response<List<Product>> GetDressPage(int category_id, int offSet, int pageSize)
         {
             var storeProduced = "sp_Product_Get";
             using (var conn = new SqlConnection(_connectionString))
@@ -189,6 +212,7 @@ namespace Store.Repositories
                     var param = new DynamicParameters();
                     param.Add("category_id", category_id);
                     param.Add("offSet", offSet);
+                    param.Add("pageSize", pageSize);
                     var data = conn.Query<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
                     if (data != null)
                     {
@@ -384,19 +408,22 @@ namespace Store.Repositories
             }
         }
 
-        public List<Product> GetAllProduct(int offSet, int pageSize)
+        public ProductGet GetAllProduct(int offSet, int pageSize)
         {
             var storeProduced = "sp_Product";
 
             using (var conn = new SqlConnection(_connectionString))
             {
+                var result = new ProductGet();
                 try
                 {
                     conn.Open();
                     var param = new DynamicParameters();
                     param.Add("@offSet", offSet);
                     param.Add("@pageSize", pageSize);
-                    var result = conn.Query<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    var reader = conn.QueryMultiple(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    result.total = reader.Read<long>().First();
+                    result.products = reader.Read<Product>().ToList();
                     return result;
                 }
                 catch (Exception ex)

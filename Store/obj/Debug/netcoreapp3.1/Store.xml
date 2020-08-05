@@ -56,7 +56,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.GetDressPage(System.Int32,System.Int32)">
+        <member name="M:Store.Controllers.StoreController.GetDressPage(System.Int32,System.Int32,System.Int32)">
             <summary>
              Get Princess Page
             </summary>
@@ -68,7 +68,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.GetTShirtPage">
+        <member name="M:Store.Controllers.StoreController.GetTShirtPage(System.Int32,System.Int32,System.Int32)">
             <summary>
              Get TShirt Page
             </summary>

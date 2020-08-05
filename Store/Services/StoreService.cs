@@ -62,9 +62,9 @@ namespace Store.Services
         {
             return _storeRepo.GetShirtPage();
         }
-        public Response<Product> GetTShirtPage()
+        public Response<List<Product>> GetTShirtPage(int category_id, int offSet, int pageSize)
         {
-            return _storeRepo.GetTShirtPage();
+            return _storeRepo.GetTShirtPage(category_id, offSet, pageSize);
         }
         public Response<Product> GetJeanPage()
         {
@@ -78,9 +78,9 @@ namespace Store.Services
         {
             return _storeRepo.GetShortPage();
         }
-        public Response<List<Product>> GetDressPage(int category_id, int offSet)
+        public Response<List<Product>> GetDressPage(int category_id, int offSet, int pageSize)
         {
-            return _storeRepo.GetDressPage(category_id, offSet);
+            return _storeRepo.GetDressPage(category_id, offSet, pageSize);
         }
         public Response<Product> GetSkirtPage()
         {
@@ -114,7 +114,7 @@ namespace Store.Services
         {
             return _storeRepo.GetSizeList();
         }
-        public List<Product> GetAllProduct(int offSet, int pageSize)
+        public ProductGet GetAllProduct(int offSet, int pageSize)
         {
             return _storeRepo.GetAllProduct(offSet, pageSize);
         }

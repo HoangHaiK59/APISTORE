@@ -162,9 +162,9 @@ namespace Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetDressPage")]
-        public IActionResult GetDressPage(int category_id, int offSet)
+        public IActionResult GetDressPage(int category_id, int offSet, int pageSize)
         {
-            var result = _storeService.GetDressPage(category_id, offSet);
+            var result = _storeService.GetDressPage(category_id, offSet, pageSize);
             if (result.success)
             {
                 return Ok(result);
@@ -192,9 +192,9 @@ namespace Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetTShirtPage")]
-        public IActionResult GetTShirtPage()
+        public IActionResult GetTShirtPage(int category_id, int offSet, int pageSize)
         {
-            var result = _storeService.GetTShirtPage();
+            var result = _storeService.GetTShirtPage(category_id, offSet, pageSize);
             if (result.success)
             {
                 return Ok(result);
@@ -344,9 +344,9 @@ namespace Store.Controllers
                 return Unauthorized();
             }
             var result = _storeService.GetAllProduct(offSet, pageSize);
-            if (result.Count > 0)
+            if (result.products.Count > 0)
             {
-                var response = new Response<List<Product>>();
+                var response = new Response<ProductGet>();
                 response.data = result;
                 response.success = true;
                 return Ok(response);

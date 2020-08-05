@@ -16,11 +16,11 @@ namespace Store.Services.Interfaces
         Response<Product> GetHomePage();
         Response<Product> GetJacketPage();
         Response<Product> GetShirtPage();
-        Response<Product> GetTShirtPage();
+        Response<List<Product>> GetTShirtPage(int category_id, int offSet, int pageSize);
         Response<Product> GetJeanPage();
         Response<Product> GetJumpSuitPage();
         Response<Product> GetShortPage();
-        Response<List<Product>> GetDressPage(int category_id, int offSet);
+        Response<List<Product>> GetDressPage(int category_id, int offSet, int pageSize);
         Response<Product> GetSkirtPage();
         Response<Product> GetDetailProduct(int productId);
         Response<Product> GetHotProduct();
@@ -31,7 +31,7 @@ namespace Store.Services.Interfaces
         Task<BaseResponse> AddProduct([FromBody] ProductInfo productInfo);
         Response<List<Color>> GetColorList();
         Response<List<Size>> GetSizeList();
-        List<Product> GetAllProduct(int offSet, int pageSize);
+        ProductGet GetAllProduct(int offSet, int pageSize);
         BaseResponse DeleteProduct(int id);
         BaseResponse Register([FromBody] Register user);
         Task<BaseResponse> AddtoCheckout([FromBody] Product product);
