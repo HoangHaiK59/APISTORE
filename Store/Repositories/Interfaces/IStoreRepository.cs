@@ -14,25 +14,18 @@ namespace Store.Repositories.Interfaces
         BaseResponse Subscribe([FromBody] Subscribe subscribe);
         Response<Landing> GetLandingPage(int ordinal);
         Response<Product> GetHomePage();
-        Response<Product> GetJacketPage();
-        Response<Product> GetShirtPage();
-        Response<List<Product>> GetTShirtPage(int category_id, int offSet, int pageSize);
-        Response<Product> GetJeanPage();
-        Response<Product> GetJumpSuitPage();
-        Response<Product> GetShortPage();
-        Response<List<Product>> GetDressPage(int category_id, int offSet, int pageSize);
-        Response<Product> GetSkirtPage();
+        Response<List<Product>> GetProductByCategory(int category_id, int offSet, int pageSize);
         Response<Product> GetDetailProduct(int productId);
         Response<Product> GetHotProduct();
-
         Response<List<Category>> GetCategoryList();
-
         Response<List<ParentCategory>> GetCategoryParentList();
         Task<BaseResponse> AddProduct([FromBody] ProductInfo productInfo);
         Response<List<Color>> GetColorList();
         Response<List<Size>> GetSizeList();
         ProductGet GetAllProduct(int offSet, int pageSize);
         BaseResponse DeleteProduct(int id);
+        Response<List<Menu>> GetClientMenu();
+        Response<List<Menu>> GetClientMenuDefault();
         BaseResponse Register([FromBody] Register user);
         Task<BaseResponse> AddtoCheckout([FromBody] Product product);
     }

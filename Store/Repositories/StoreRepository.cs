@@ -146,61 +146,7 @@ namespace Store.Repositories
             var result = new Response<Product>();
             return result;
         }
-
-        public Response<Product> GetJacketPage()
-        {
-            var result = new Response<Product>();
-            return result;
-        }
-        public Response<Product> GetShirtPage()
-        {
-            var result = new Response<Product>();
-            return result;
-        }
-        public Response<List<Product>> GetTShirtPage(int category_id, int offSet, int pageSize)
-        {
-            var storeProduced = "sp_Product_Get";
-            using (var conn = new SqlConnection(_connectionString))
-            {
-                var result = new Response<List<Product>>();
-                try
-                {
-                    conn.Open();
-                    var param = new DynamicParameters();
-                    param.Add("category_id", category_id);
-                    param.Add("offSet", offSet);
-                    param.Add("pageSize", pageSize);
-                    var data = conn.Query<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
-                    if (data.Count > 0)
-                    {
-                        result.data = data;
-                        result.success = true;
-                        return result;
-                    }
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-        public Response<Product> GetJeanPage()
-        {
-            var result = new Response<Product>();
-            return result;
-        }
-        public Response<Product> GetJumpSuitPage()
-        {
-            var result = new Response<Product>();
-            return result;
-        }
-        public Response<Product> GetShortPage()
-        {
-            var result = new Response<Product>();
-            return result;
-        }
-        public Response<List<Product>> GetDressPage(int category_id, int offSet, int pageSize)
+        public Response<List<Product>> GetProductByCategory(int category_id, int offSet, int pageSize)
         {
             var storeProduced = "sp_Product_Get";
             using (var conn = new SqlConnection(_connectionString))
@@ -227,11 +173,6 @@ namespace Store.Repositories
                     throw ex;
                 }
             }
-        }
-        public Response<Product> GetSkirtPage()
-        {
-            var result = new Response<Product>();
-            return result;
         }
         public Response<List<Category>> GetCategoryList() { 
         
@@ -424,6 +365,54 @@ namespace Store.Repositories
                     var reader = conn.QueryMultiple(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
                     result.total = reader.Read<long>().First();
                     result.products = reader.Read<Product>().ToList();
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public Response<List<Menu>> GetClientMenu()
+        {
+            var storeProduced = "sp_Menu";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<List<Menu>>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    var data = conn.Query<Menu>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    if(data.Count > 0)
+                    {
+                        result.data = data;
+                        result.success = true;
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public Response<List<Menu>> GetClientMenuDefault()
+        {
+            var storeProduced = "sp_Menu_Default";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<List<Menu>>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    var data = conn.Query<Menu>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
+                    if (data.Count > 0)
+                    {
+                        result.data = data;
+                        result.success = true;
+                    }
                     return result;
                 }
                 catch (Exception ex)

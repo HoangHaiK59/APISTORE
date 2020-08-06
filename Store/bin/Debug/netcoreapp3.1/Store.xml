@@ -38,51 +38,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.GetJacketPage">
+        <member name="M:Store.Controllers.StoreController.GetProductByCategory(System.Int32,System.Int32,System.Int32)">
             <summary>
-             Get Jacket Page
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Store.Controllers.StoreController.GetJeanPage">
-            <summary>
-             Get Jean Page
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Store.Controllers.StoreController.GetJumpSuitPage">
-            <summary>
-             Get JumpSuit Page
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Store.Controllers.StoreController.GetDressPage(System.Int32,System.Int32,System.Int32)">
-            <summary>
-             Get Princess Page
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Store.Controllers.StoreController.GetShirtPage">
-            <summary>
-             Get Shirt Page
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Store.Controllers.StoreController.GetTShirtPage(System.Int32,System.Int32,System.Int32)">
-            <summary>
-             Get TShirt Page
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Store.Controllers.StoreController.GetSkirtPage">
-            <summary>
-             Get Skirt Page
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Store.Controllers.StoreController.GetShortPage">
-            <summary>
-            Get Short Page
+            Get Product By Category
             </summary>
             <returns></returns>
         </member>
@@ -130,6 +88,18 @@
             </summary>
             <param offSet="int"></param>
             <param pageSize="int"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetClientMenu">
+            <summary>
+             Get Client Menu
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetClientMenuDefault">
+            <summary>
+             Get Client Menu Default
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.DeleteProduct(System.Int32)">

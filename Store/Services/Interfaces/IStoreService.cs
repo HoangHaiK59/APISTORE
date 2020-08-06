@@ -14,14 +14,7 @@ namespace Store.Services.Interfaces
         BaseResponse Subscribe([FromBody] Subscribe subscribe);
         Response<Landing> GetLandingPage(int ordinal);
         Response<Product> GetHomePage();
-        Response<Product> GetJacketPage();
-        Response<Product> GetShirtPage();
-        Response<List<Product>> GetTShirtPage(int category_id, int offSet, int pageSize);
-        Response<Product> GetJeanPage();
-        Response<Product> GetJumpSuitPage();
-        Response<Product> GetShortPage();
-        Response<List<Product>> GetDressPage(int category_id, int offSet, int pageSize);
-        Response<Product> GetSkirtPage();
+        Response<List<Product>> GetProductByCategory(int category_id, int offSet, int pageSize);
         Response<Product> GetDetailProduct(int productId);
         Response<Product> GetHotProduct();
 
@@ -32,6 +25,8 @@ namespace Store.Services.Interfaces
         Response<List<Color>> GetColorList();
         Response<List<Size>> GetSizeList();
         ProductGet GetAllProduct(int offSet, int pageSize);
+        Response<List<Menu>> GetClientMenu();
+        Response<List<Menu>> GetClientMenuDefault();
         BaseResponse DeleteProduct(int id);
         BaseResponse Register([FromBody] Register user);
         Task<BaseResponse> AddtoCheckout([FromBody] Product product);

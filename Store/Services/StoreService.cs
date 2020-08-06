@@ -54,38 +54,11 @@ namespace Store.Services
         {
             return _storeRepo.GetHomePage();
         }
-        public Response<Product> GetJacketPage()
+        public Response<List<Product>> GetProductByCategory(int category_id, int offSet, int pageSize)
         {
-            return _storeRepo.GetJacketPage();
+            return _storeRepo.GetProductByCategory(category_id, offSet, pageSize);
         }
-        public Response<Product> GetShirtPage()
-        {
-            return _storeRepo.GetShirtPage();
-        }
-        public Response<List<Product>> GetTShirtPage(int category_id, int offSet, int pageSize)
-        {
-            return _storeRepo.GetTShirtPage(category_id, offSet, pageSize);
-        }
-        public Response<Product> GetJeanPage()
-        {
-            return _storeRepo.GetJeanPage();
-        }
-        public Response<Product> GetJumpSuitPage()
-        {
-            return _storeRepo.GetJumpSuitPage();
-        }
-        public Response<Product> GetShortPage()
-        {
-            return _storeRepo.GetShortPage();
-        }
-        public Response<List<Product>> GetDressPage(int category_id, int offSet, int pageSize)
-        {
-            return _storeRepo.GetDressPage(category_id, offSet, pageSize);
-        }
-        public Response<Product> GetSkirtPage()
-        {
-            return _storeRepo.GetSkirtPage();
-        }
+
         public Response<Product> GetDetailProduct(int productId)
         {
             return _storeRepo.GetDetailProduct(productId);
@@ -117,6 +90,14 @@ namespace Store.Services
         public ProductGet GetAllProduct(int offSet, int pageSize)
         {
             return _storeRepo.GetAllProduct(offSet, pageSize);
+        }
+        public Response<List<Menu>> GetClientMenu()
+        {
+            return _storeRepo.GetClientMenu();
+        }
+        public Response<List<Menu>> GetClientMenuDefault()
+        {
+            return _storeRepo.GetClientMenuDefault();
         }
         public BaseResponse DeleteProduct(int id)
         {

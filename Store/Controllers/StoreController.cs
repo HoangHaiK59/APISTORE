@@ -113,13 +113,13 @@ namespace Store.Controllers
         }
 
         /// <summary>
-        ///  Get Jacket Page
+        /// Get Product By Category
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetJacketPage")]
-        public IActionResult GetJacketPage()
+        [HttpGet("GetProductByCategory")]
+        public IActionResult GetProductByCategory(int category_id, int offSet, int pageSize)
         {
-            var result = _storeService.GetJacketPage();
+            var result = _storeService.GetProductByCategory(category_id, offSet, pageSize);
             if (result.success)
             {
                 return Ok(result);
@@ -127,110 +127,6 @@ namespace Store.Controllers
             return BadRequest();
         }
 
-        /// <summary>
-        ///  Get Jean Page
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetJeanPage")]
-        public IActionResult GetJeanPage()
-        {
-            var result = _storeService.GetJeanPage();
-            if (result.success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
-
-        /// <summary>
-        ///  Get JumpSuit Page
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetJumpSuitPage")]
-        public IActionResult GetJumpSuitPage()
-        {
-            var result = _storeService.GetJumpSuitPage();
-            if (result.success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
-
-        /// <summary>
-        ///  Get Princess Page
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetDressPage")]
-        public IActionResult GetDressPage(int category_id, int offSet, int pageSize)
-        {
-            var result = _storeService.GetDressPage(category_id, offSet, pageSize);
-            if (result.success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
-
-        /// <summary>
-        ///  Get Shirt Page
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetShirtPage")]
-        public IActionResult GetShirtPage()
-        {
-            var result = _storeService.GetShirtPage();
-            if (result.success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
-
-        /// <summary>
-        ///  Get TShirt Page
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetTShirtPage")]
-        public IActionResult GetTShirtPage(int category_id, int offSet, int pageSize)
-        {
-            var result = _storeService.GetTShirtPage(category_id, offSet, pageSize);
-            if (result.success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
-
-        /// <summary>
-        ///  Get Skirt Page
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetSkirtPage")]
-        public IActionResult GetSkirtPage()
-        {
-            var result = _storeService.GetSkirtPage();
-            if (result.success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
-
-        /// <summary>
-        /// Get Short Page
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetShortPage")]
-        public IActionResult GetShortPage()
-        {
-            var result = _storeService.GetShortPage();
-            if (result.success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
 
         /// <summary>
         /// Get Category List
@@ -350,6 +246,48 @@ namespace Store.Controllers
                 response.data = result;
                 response.success = true;
                 return Ok(response);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Client Menu
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetClientMenu")]
+        public IActionResult GetClientMenu()
+        {
+            var validate = GetAuthorizeHeader();
+            if (validate == null)
+            {
+                var response = _storeService.GetClientMenuDefault();
+                if(response.success)
+                {
+                    return Ok(response);
+                } else
+                {
+                    return BadRequest();
+                }
+            }
+            var result = _storeService.GetClientMenu();
+            if (result.success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Get Client Menu Default
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetClientMenuDefault")]
+        public IActionResult GetClientMenuDefault()
+        {
+            var result = _storeService.GetClientMenuDefault();
+            if (result.success)
+            {
+                return Ok(result);
             }
             return BadRequest();
         }
