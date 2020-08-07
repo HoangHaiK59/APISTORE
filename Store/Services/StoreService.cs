@@ -91,9 +91,9 @@ namespace Store.Services
         {
             return _storeRepo.GetAllProduct(offSet, pageSize);
         }
-        public Response<List<Menu>> GetClientMenu()
+        public Response<List<Menu>> GetClientMenu(Guid userId)
         {
-            return _storeRepo.GetClientMenu();
+            return _storeRepo.GetClientMenu(userId);
         }
         public Response<List<Menu>> GetClientMenuDefault()
         {

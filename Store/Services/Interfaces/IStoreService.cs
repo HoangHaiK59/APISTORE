@@ -25,7 +25,7 @@ namespace Store.Services.Interfaces
         Response<List<Color>> GetColorList();
         Response<List<Size>> GetSizeList();
         ProductGet GetAllProduct(int offSet, int pageSize);
-        Response<List<Menu>> GetClientMenu();
+        Response<List<Menu>> GetClientMenu(Guid userId);
         Response<List<Menu>> GetClientMenuDefault();
         BaseResponse DeleteProduct(int id);
         BaseResponse Register([FromBody] Register user);

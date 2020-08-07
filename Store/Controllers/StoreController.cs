@@ -28,6 +28,7 @@ namespace Store.Controllers
     {
         private IConfiguration _configuration;
         private readonly IStoreService _storeService;
+        public Guid userId;
         public StoreController(IStoreService storeService)
         {
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Environment.CurrentDirectory)
@@ -62,6 +63,7 @@ namespace Store.Controllers
         public BaseResponseWithToken Authorize([FromBody] UserLogin userLogin)
         {
             var result = _storeService.Authorize(userLogin);
+            userId = result.userId;
             return result;
         }
 
@@ -261,15 +263,16 @@ namespace Store.Controllers
             if (validate == null)
             {
                 var response = _storeService.GetClientMenuDefault();
-                if(response.success)
+                if (response.success)
                 {
                     return Ok(response);
-                } else
+                }
+                else
                 {
                     return BadRequest();
                 }
             }
-            var result = _storeService.GetClientMenu();
+            var result = _storeService.GetClientMenu(userId);
             if (result.success)
             {
                 return Ok(result);

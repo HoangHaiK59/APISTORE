@@ -24,7 +24,7 @@ namespace Store.Repositories.Interfaces
         Response<List<Size>> GetSizeList();
         ProductGet GetAllProduct(int offSet, int pageSize);
         BaseResponse DeleteProduct(int id);
-        Response<List<Menu>> GetClientMenu();
+        Response<List<Menu>> GetClientMenu(Guid userId);
         Response<List<Menu>> GetClientMenuDefault();
         BaseResponse Register([FromBody] Register user);
         Task<BaseResponse> AddtoCheckout([FromBody] Product product);

@@ -373,7 +373,7 @@ namespace Store.Repositories
                 }
             }
         }
-        public Response<List<Menu>> GetClientMenu()
+        public Response<List<Menu>> GetClientMenu(Guid userId)
         {
             var storeProduced = "sp_Menu";
             using (var conn = new SqlConnection(_connectionString))
@@ -383,6 +383,7 @@ namespace Store.Repositories
                 {
                     conn.Open();
                     var param = new DynamicParameters();
+                    param.Add("@userId", userId);
                     var data = conn.Query<Menu>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
                     if(data.Count > 0)
                     {
