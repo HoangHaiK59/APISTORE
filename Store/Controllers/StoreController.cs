@@ -28,7 +28,6 @@ namespace Store.Controllers
     {
         private IConfiguration _configuration;
         private readonly IStoreService _storeService;
-        public Guid userId;
         public StoreController(IStoreService storeService)
         {
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Environment.CurrentDirectory)
@@ -63,7 +62,6 @@ namespace Store.Controllers
         public BaseResponseWithToken Authorize([FromBody] UserLogin userLogin)
         {
             var result = _storeService.Authorize(userLogin);
-            userId = result.userId;
             return result;
         }
 
@@ -254,13 +252,13 @@ namespace Store.Controllers
 
         /// <summary>
         ///  Get Client Menu
+        ///  <param userId="string"></param>
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetClientMenu")]
-        public IActionResult GetClientMenu()
+        public IActionResult GetClientMenu(string userId)
         {
-            var validate = GetAuthorizeHeader();
-            if (validate == null)
+            if(string.IsNullOrEmpty(userId))
             {
                 var response = _storeService.GetClientMenuDefault();
                 if (response.success)
@@ -271,13 +269,30 @@ namespace Store.Controllers
                 {
                     return BadRequest();
                 }
-            }
-            var result = _storeService.GetClientMenu(userId);
-            if (result.success)
+            } else
             {
-                return Ok(result);
+                Guid userIdGuid = new Guid(userId);
+                var validate = GetAuthorizeHeader();
+                if (validate == null)
+                {
+                    var response = _storeService.GetClientMenuDefault();
+                    if (response.success)
+                    {
+                        return Ok(response);
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                }
+                var result = _storeService.GetClientMenu(userIdGuid);
+                if (result.success)
+                {
+                    return Ok(result);
+                }
+                return BadRequest();
             }
-            return BadRequest();
+
         }
 
         /// <summary>

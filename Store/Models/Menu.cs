@@ -10,7 +10,9 @@ namespace Store.Models
         public int id { get; set; }
         public string name { get; set; }
         public string path { get; set; }
-        public List<Submenu> submenus { get; set; }
+        public string submenus { get; set; }
+        public int ordinal { get; set; }
+        public string type { get; set; }
     }
 
     public class Submenu

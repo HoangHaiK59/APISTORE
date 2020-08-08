@@ -90,9 +90,10 @@
             <param pageSize="int"></param>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.GetClientMenu">
+        <member name="M:Store.Controllers.StoreController.GetClientMenu(System.String)">
             <summary>
              Get Client Menu
+             <param userId="string"></param>
             </summary>
             <returns></returns>
         </member>
