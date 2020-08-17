@@ -107,9 +107,9 @@ namespace Store.Services
         {
             return _storeRepo.Register(user);
         }
-        public Task<BaseResponse> AddtoCheckout([FromBody] Product product)
+        public Task<BaseResponse> AddToCart([FromBody] Cart product)
         {
-            return _storeRepo.AddtoCheckout(product);
+            return _storeRepo.AddToCart(product);
         }
 
         private string generateJwtToken(UserLogin user)

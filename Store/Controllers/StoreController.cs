@@ -252,8 +252,8 @@ namespace Store.Controllers
 
         /// <summary>
         ///  Get Client Menu
-        ///  <param userId="string"></param>
         /// </summary>
+        /// <param userId="string"></param>
         /// <returns></returns>
         [HttpGet("GetClientMenu")]
         public IActionResult GetClientMenu(string userId)
@@ -324,6 +324,27 @@ namespace Store.Controllers
                 return Unauthorized();
             }
             var result = _storeService.DeleteProduct(id);
+            if (result.success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        /// <summary>
+        ///  Add to Cart
+        /// </summary>
+        /// <param product="Cart"></param>
+        /// <returns></returns>
+        [HttpDelete("AddToCart")]
+        public async Task<IActionResult> AddToCart([FromBody] Cart product)
+        {
+            var validate = GetAuthorizeHeader();
+            if (validate == null)
+            {
+                return Unauthorized();
+            }
+            var result = await _storeService.AddToCart(product);
             if (result.success)
             {
                 return Ok(result);

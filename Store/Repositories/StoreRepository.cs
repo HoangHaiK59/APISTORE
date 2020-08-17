@@ -422,9 +422,9 @@ namespace Store.Repositories
                 }
             }
         }
-        public async Task<BaseResponse> AddtoCheckout([FromBody] Product product)
+        public async Task<BaseResponse> AddToCart([FromBody] Cart product)
         {
-            var storeProduced = "sp_Checkout_Set";
+            var storeProduced = "sp_Cart_Set";
 
             using (var conn = new SqlConnection(_connectionString))
             {

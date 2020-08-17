@@ -93,8 +93,8 @@
         <member name="M:Store.Controllers.StoreController.GetClientMenu(System.String)">
             <summary>
              Get Client Menu
-             <param userId="string"></param>
             </summary>
+            <param userId="string"></param>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.GetClientMenuDefault">
@@ -108,6 +108,13 @@
              Delete Product
             </summary>
             <param id="int"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.AddToCart(Store.Models.Cart)">
+            <summary>
+             Add to Cart
+            </summary>
+            <param product="Cart"></param>
             <returns></returns>
         </member>
         <member name="M:Store.Controllers.StoreController.Register(Store.Models.Register)">

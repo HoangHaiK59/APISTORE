@@ -29,6 +29,6 @@ namespace Store.Services.Interfaces
         Response<List<Menu>> GetClientMenuDefault();
         BaseResponse DeleteProduct(int id);
         BaseResponse Register([FromBody] Register user);
-        Task<BaseResponse> AddtoCheckout([FromBody] Product product);
+        Task<BaseResponse> AddToCart([FromBody] Cart product);
     }
 }

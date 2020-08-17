@@ -27,6 +27,6 @@ namespace Store.Repositories.Interfaces
         Response<List<Menu>> GetClientMenu(Guid userId);
         Response<List<Menu>> GetClientMenuDefault();
         BaseResponse Register([FromBody] Register user);
-        Task<BaseResponse> AddtoCheckout([FromBody] Product product);
+        Task<BaseResponse> AddToCart([FromBody] Cart product);
     }
 }

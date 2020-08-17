@@ -20,6 +20,16 @@ namespace Store.Models
         public string statusName { get; set; }
     }
 
+    public partial class Cart
+    {
+        public long Id { get; set; }
+        public int CategoryId { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public long Discount { get; set; }
+        public string size { get; set; }
+    }
+
     public partial class ProductGet
     {
         public long total { get; set; }
