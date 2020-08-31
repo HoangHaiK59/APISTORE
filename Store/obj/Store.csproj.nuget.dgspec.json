@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ASP\\STORE\\Store\\Store.csproj": {}
+    "E:\\NETCORE\\Store\\Store.csproj": {}
   },
   "projects": {
-    "E:\\ASP\\STORE\\Store\\Store.csproj": {
+    "E:\\NETCORE\\Store\\Store.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ASP\\STORE\\Store\\Store.csproj",
+        "projectUniqueName": "E:\\NETCORE\\Store\\Store.csproj",
         "projectName": "Store",
-        "projectPath": "E:\\ASP\\STORE\\Store\\Store.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\ASP\\STORE\\Store\\obj\\",
+        "projectPath": "E:\\NETCORE\\Store\\Store.csproj",
+        "packagesPath": "C:\\Users\\trinh\\.nuget\\packages\\",
+        "outputPath": "E:\\NETCORE\\Store\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\trinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -115,7 +115,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

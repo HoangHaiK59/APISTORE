@@ -463,7 +463,7 @@ namespace Store.Repositories
                     conn.Open();
                     var param = new DynamicParameters();
                     param.Add("@id", productInfo.product.Id);
-                    param.Add("@category_id", productInfo.product.categoryId);
+                    param.Add("@catId", productInfo.product.catId);
                     param.Add("@name", productInfo.product.Name);
                     param.Add("@price", productInfo.product.Price);
                     param.Add("@discount", productInfo.product.Discount);
