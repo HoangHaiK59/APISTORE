@@ -14,7 +14,7 @@ namespace Store.Services.Interfaces
         BaseResponse Subscribe([FromBody] Subscribe subscribe);
         Response<Landing> GetLandingPage(int ordinal);
         Response<Product> GetHomePage();
-        Response<List<Product>> GetProductByCategory(int category_id, int offSet, int pageSize);
+        Response<List<Product>> GetProductByCategory(Guid catId, int offSet, int pageSize);
         Response<Product> GetDetailProduct(int productId);
         Response<Product> GetHotProduct();
 

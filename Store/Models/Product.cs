@@ -6,7 +6,7 @@ namespace Store.Models
     public partial class Product
     {
         public long Id { get; set; }
-        public int CategoryId { get; set; }
+        public Guid CatId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public long Discount { get; set; }
@@ -23,7 +23,7 @@ namespace Store.Models
     public partial class Cart
     {
         public long Id { get; set; }
-        public int CategoryId { get; set; }
+        public Guid CatId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public long Discount { get; set; }
@@ -51,7 +51,7 @@ namespace Store.Models
     public partial class ProductSet
     {
         public long Id { get; set; }
-        public int categoryId { get; set; }
+        public Guid catId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public long Discount { get; set; }

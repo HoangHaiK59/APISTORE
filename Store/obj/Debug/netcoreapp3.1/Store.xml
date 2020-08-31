@@ -38,7 +38,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.GetProductByCategory(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Store.Controllers.StoreController.GetProductByCategory(System.Guid,System.Int32,System.Int32)">
             <summary>
             Get Product By Category
             </summary>

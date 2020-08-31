@@ -117,9 +117,9 @@ namespace Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetProductByCategory")]
-        public IActionResult GetProductByCategory(int category_id, int offSet, int pageSize)
+        public IActionResult GetProductByCategory(Guid catId, int offSet, int pageSize)
         {
-            var result = _storeService.GetProductByCategory(category_id, offSet, pageSize);
+            var result = _storeService.GetProductByCategory(catId, offSet, pageSize);
             if (result.success)
             {
                 return Ok(result);

@@ -54,9 +54,9 @@ namespace Store.Services
         {
             return _storeRepo.GetHomePage();
         }
-        public Response<List<Product>> GetProductByCategory(int category_id, int offSet, int pageSize)
+        public Response<List<Product>> GetProductByCategory(Guid catId, int offSet, int pageSize)
         {
-            return _storeRepo.GetProductByCategory(category_id, offSet, pageSize);
+            return _storeRepo.GetProductByCategory(catId, offSet, pageSize);
         }
 
         public Response<Product> GetDetailProduct(int productId)

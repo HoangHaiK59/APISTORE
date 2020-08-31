@@ -146,7 +146,7 @@ namespace Store.Repositories
             var result = new Response<Product>();
             return result;
         }
-        public Response<List<Product>> GetProductByCategory(int category_id, int offSet, int pageSize)
+        public Response<List<Product>> GetProductByCategory(Guid cat_id, int offSet, int pageSize)
         {
             var storeProduced = "sp_Product_Get";
             using (var conn = new SqlConnection(_connectionString))
@@ -156,7 +156,7 @@ namespace Store.Repositories
                 {
                     conn.Open();
                     var param = new DynamicParameters();
-                    param.Add("category_id", category_id);
+                    param.Add("cat_id", cat_id);
                     param.Add("offSet", offSet);
                     param.Add("pageSize", pageSize);
                     var data = conn.Query<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();

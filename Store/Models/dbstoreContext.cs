@@ -132,7 +132,7 @@ namespace Store.Models
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.Property(e => e.CategoryId).HasColumnName("category_id");
+                entity.Property(e => e.CatId).HasColumnName("cat_id");
 
                 entity.Property(e => e.Created).HasColumnName("created");
 
