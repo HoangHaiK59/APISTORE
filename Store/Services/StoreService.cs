@@ -54,7 +54,7 @@ namespace Store.Services
         {
             return _storeRepo.GetHomePage();
         }
-        public Response<List<Product>> GetProductByCategory(Guid catId, int offSet, int pageSize)
+        public Response<List<Product>> GetProductByCategory(string catId, int offSet, int pageSize)
         {
             return _storeRepo.GetProductByCategory(catId, offSet, pageSize);
         }
@@ -87,9 +87,13 @@ namespace Store.Services
         {
             return _storeRepo.GetSizeList();
         }
-        public ProductGet GetAllProduct(int offSet, int pageSize)
+        public Response<ProductGet> GetAllProduct(int offSet, int pageSize)
         {
             return _storeRepo.GetAllProduct(offSet, pageSize);
+        }
+        public Response<List<Product>> GetProducts(int offSet, int pageSize)
+        {
+            return _storeRepo.GetProducts(offSet, pageSize);
         }
         public Response<List<Menu>> GetClientMenu(Guid userId)
         {

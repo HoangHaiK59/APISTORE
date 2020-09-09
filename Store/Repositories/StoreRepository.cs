@@ -146,12 +146,11 @@ namespace Store.Repositories
             var result = new Response<Product>();
             return result;
         }
-        public Response<List<Product>> GetProductByCategory(Guid cat_id, int offSet, int pageSize)
+        public Response<List<Product>> GetProductByCategory(string cat_id, int offSet, int pageSize)
         {
             var storeProduced = "sp_Product_Get";
             using (var conn = new SqlConnection(_connectionString))
             {
-                var result = new Response<List<Product>>();
                 try
                 {
                     conn.Open();
@@ -159,14 +158,19 @@ namespace Store.Repositories
                     param.Add("cat_id", cat_id);
                     param.Add("offSet", offSet);
                     param.Add("pageSize", pageSize);
-                    var data = conn.Query<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure).ToList();
-                    if (data != null)
+                    var result = conn.QueryMultiple(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    if (result != null)
                     {
-                        result.data = data;
-                        result.success = true;
-                        return result;
+                        var infoList = result.Read<Product>().ToList();
+
+                        var images = result.Read<Image>().ToList();
+                        foreach(var dt in infoList)
+                        {
+                            dt.images = images.Where(i => i.ProductId == dt.Id).ToList();
+                        }
+                        return new Response<List<Product>>{ success = true, data = infoList  };
                     }
-                    return result;
+                    return new Response<List<Product>> { success = true, data = new List<Product>() };
                 }
                 catch (Exception ex)
                 {
@@ -283,20 +287,23 @@ namespace Store.Repositories
 
             using (var conn = new SqlConnection(_connectionString))
             {
-                var result = new Response<Product>();
                 try
                 {
                     conn.Open();
                     var param = new DynamicParameters();
                     param.Add("@id", productId);
-                    var data = conn.QueryFirstOrDefault<Product>(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
-                    if (data != null)
+                    var reader = conn.QueryMultiple(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    if (reader != null)
                     {
-                        result.success = true;
-                        result.data = data;
-                        return result;
+                        var info = reader.Read<Product>().ToList();
+                        var images = reader.Read<Image>().ToList();
+                        foreach (var dt in info)
+                        {
+                            dt.images = images;
+                        }
+                        return new Response<Product> { success = true, data = info[0] };
                     }
-                    return result;
+                    return new Response<Product> { success = true, data = new Product() };
                 }
                 catch (Exception ex)
                 {
@@ -349,13 +356,13 @@ namespace Store.Repositories
             }
         }
 
-        public ProductGet GetAllProduct(int offSet, int pageSize)
+        public Response<ProductGet> GetAllProduct(int offSet, int pageSize)
         {
             var storeProduced = "sp_Product";
 
             using (var conn = new SqlConnection(_connectionString))
             {
-                var result = new ProductGet();
+                var result = new Response<ProductGet>();
                 try
                 {
                     conn.Open();
@@ -363,9 +370,50 @@ namespace Store.Repositories
                     param.Add("@offSet", offSet);
                     param.Add("@pageSize", pageSize);
                     var reader = conn.QueryMultiple(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
-                    result.total = reader.Read<long>().First();
-                    result.products = reader.Read<Product>().ToList();
-                    return result;
+                    if(reader != null)
+                    {
+                        var total = reader.Read<long>().First();
+                        var products = reader.Read<Product>().ToList();
+                        var images = reader.Read<Image>().ToList();
+                        foreach (var dt in products)
+                        {
+                            dt.images = images.Where(i => i.ProductId == dt.Id).ToList();
+                        }
+                        return new Response<ProductGet> { success = true, data = new ProductGet() { total = total, products = products } };
+                    }
+                    return new Response<ProductGet> { success = true ,data = { total = 0, products = new List<Product>() } };
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public Response<List<Product>> GetProducts(int offSet, int pageSize)
+        {
+            var storeProduced = "sp_Products_Page";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                var result = new Response<ProductGet>();
+                try
+                {
+                    conn.Open();
+                    var param = new DynamicParameters();
+                    param.Add("@offSet", offSet);
+                    param.Add("@pageSize", pageSize);
+                    var reader = conn.QueryMultiple(storeProduced, param, commandType: System.Data.CommandType.StoredProcedure);
+                    if (reader != null)
+                    {
+                        var products = reader.Read<Product>().ToList();
+                        var images = reader.Read<Image>().ToList();
+                        foreach (var dt in products)
+                        {
+                            dt.images = images.Where(i => i.ProductId == dt.Id).ToList();
+                        }
+                        return new Response<List<Product>> { success = true, data= products };
+                    }
+                    return new Response<List<Product>> { success = true, data = new List<Product>() };
                 }
                 catch (Exception ex)
                 {
@@ -452,8 +500,8 @@ namespace Store.Repositories
         public async Task<BaseResponse> AddProduct([FromBody] ProductInfo productInfo)
         {
             var storeProduced = "sp_Product_Set";
-            string[] converts = (from i in productInfo.images select JsonConvert.SerializeObject(i)).ToArray<string>();
-            string images = string.Join(";", converts);
+            // string[] converts = (from i in productInfo.images select JsonConvert.SerializeObject(i)).To
+            string images = JsonConvert.SerializeObject(productInfo.images);
             string[] sizeConvert = (from i in productInfo.product.size select i.ToString()).ToArray<string>();
             string size = string.Join(",", sizeConvert);
             using (var conn = new SqlConnection(_connectionString))

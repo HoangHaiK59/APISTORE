@@ -38,7 +38,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Store.Controllers.StoreController.GetProductByCategory(System.Guid,System.Int32,System.Int32)">
+        <member name="M:Store.Controllers.StoreController.GetProductByCategory(System.String,System.Int32,System.Int32)">
             <summary>
             Get Product By Category
             </summary>
@@ -85,6 +85,14 @@
         <member name="M:Store.Controllers.StoreController.GetAllProduct(System.Int32,System.Int32)">
             <summary>
              Get All Product
+            </summary>
+            <param offSet="int"></param>
+            <param pageSize="int"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Store.Controllers.StoreController.GetProducts(System.Int32,System.Int32)">
+            <summary>
+             Get Products Page
             </summary>
             <param offSet="int"></param>
             <param pageSize="int"></param>

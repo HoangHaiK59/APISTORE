@@ -74,11 +74,6 @@ namespace Store.Models
                     .HasColumnType("text")
                     .HasDefaultValueSql("('')");
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasColumnName("name")
-                    .HasMaxLength(128)
-                    .HasDefaultValueSql("('')");
 
                 entity.Property(e => e.ProductId).HasColumnName("productId");
 

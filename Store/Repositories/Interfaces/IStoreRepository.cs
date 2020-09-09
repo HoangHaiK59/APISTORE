@@ -14,7 +14,7 @@ namespace Store.Repositories.Interfaces
         BaseResponse Subscribe([FromBody] Subscribe subscribe);
         Response<Landing> GetLandingPage(int ordinal);
         Response<Product> GetHomePage();
-        Response<List<Product>> GetProductByCategory(Guid catId, int offSet, int pageSize);
+        Response<List<Product>> GetProductByCategory(string catId, int offSet, int pageSize);
         Response<Product> GetDetailProduct(int productId);
         Response<Product> GetHotProduct();
         Response<List<Category>> GetCategoryList();
@@ -22,7 +22,8 @@ namespace Store.Repositories.Interfaces
         Task<BaseResponse> AddProduct([FromBody] ProductInfo productInfo);
         Response<List<Color>> GetColorList();
         Response<List<Size>> GetSizeList();
-        ProductGet GetAllProduct(int offSet, int pageSize);
+        Response<ProductGet> GetAllProduct(int offSet, int pageSize);
+        Response<List<Product>> GetProducts(int offSet, int pageSize);
         BaseResponse DeleteProduct(int id);
         Response<List<Menu>> GetClientMenu(Guid userId);
         Response<List<Menu>> GetClientMenuDefault();

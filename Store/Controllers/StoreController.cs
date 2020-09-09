@@ -117,7 +117,7 @@ namespace Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetProductByCategory")]
-        public IActionResult GetProductByCategory(Guid catId, int offSet, int pageSize)
+        public IActionResult GetProductByCategory(string catId, int offSet, int pageSize)
         {
             var result = _storeService.GetProductByCategory(catId, offSet, pageSize);
             if (result.success)
@@ -240,14 +240,20 @@ namespace Store.Controllers
                 return Unauthorized();
             }
             var result = _storeService.GetAllProduct(offSet, pageSize);
-            if (result.products.Count > 0)
-            {
-                var response = new Response<ProductGet>();
-                response.data = result;
-                response.success = true;
-                return Ok(response);
-            }
-            return BadRequest();
+            return Ok(result);
+        }
+
+        /// <summary>
+        ///  Get Products Page
+        /// </summary>
+        /// <param offSet="int"></param>
+        /// <param pageSize="int"></param>
+        /// <returns></returns>
+        [HttpGet("GetProducts")]
+        public IActionResult GetProducts(int offSet, int pageSize)
+        {
+            var result = _storeService.GetProducts(offSet, pageSize);
+            return Ok(result);
         }
 
         /// <summary>
